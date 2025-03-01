@@ -13,3 +13,12 @@ config_version=5
 config/name="JamCraftProject"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=648
+window/stretch/mode="canvas_items"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.721569, 0.760784, 0.72549, 1)
