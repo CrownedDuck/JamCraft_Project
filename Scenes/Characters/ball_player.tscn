@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0ee5nowt68b5"]
+
+[ext_resource type="Texture2D" uid="uid://xpqb4nfojo45" path="res://Assets/CoMiGoFantasyIcons/PNG_White/Plus_01.png" id="2_7yhxg"]
+[ext_resource type="Texture2D" uid="uid://crwyp7hit8m0r" path="res://Assets/CoMiGoFantasyIcons/PNG_White/Shield.png" id="3_b2udf"]
+[ext_resource type="Texture2D" uid="uid://bv0bajn8shv2n" path="res://Assets/CoMiGoFantasyIcons/PNG_White/Sword.png" id="4_1lyjo"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u2gu5"]
+bounce = 0.4
+
+[sub_resource type="GDScript" id="GDScript_p7cbe"]
+script/source = "extends RigidBody2D
+
+const PUSH_STRENGTH:float = 5.0
+const JUMP_STRENGTH:float = -300
+
+var MODE:String = \"BALL\"
+
+func _physics_process(delta):
+	
+	if MODE == \"BALL\":
+		var velocity = Vector2.ZERO
+		velocity.x = (Input.get_action_strength(\"move_right\") - Input.get_action_strength(\"move_left\")) * PUSH_STRENGTH
+		if Input.is_action_just_pressed(\"move_jump\"):
+			velocity.y = JUMP_STRENGTH
+		apply_central_impulse(velocity)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_po3jg"]
+radius = 24.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tgcm5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7yhxg")
+}],
+"loop": true,
+"name": &"Ball",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_b2udf")
+}],
+"loop": true,
+"name": &"Shield",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1lyjo")
+}],
+"loop": true,
+"name": &"Sword",
+"speed": 5.0
+}]
+
+[node name="Ball" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_u2gu5")
+script = SubResource("GDScript_p7cbe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_po3jg")
+
+[node name="Anims" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2.84217e-14)
+scale = Vector2(0.135, 0.135)
+sprite_frames = SubResource("SpriteFrames_tgcm5")
+animation = &"Ball"

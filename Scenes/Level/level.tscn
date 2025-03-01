@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu8wxavet4wba"]
+
+[ext_resource type="PackedScene" uid="uid://hyuejxnho0dq" path="res://Scenes/Characters/Human_player.tscn" id="1_l46t4"]
+[ext_resource type="PackedScene" uid="uid://b33kr2w6c8flb" path="res://Scenes/Other/wall_block.tscn" id="2_fsci4"]
+[ext_resource type="PackedScene" uid="uid://jpfkt7nkn1qm" path="res://Scenes/Other/throwable_object.tscn" id="3_s4r4u"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Wall_Block" parent="." instance=ExtResource("2_fsci4")]
+position = Vector2(336, 384)
+
+[node name="Wall_Block2" parent="." instance=ExtResource("2_fsci4")]
+position = Vector2(288, 384)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(336, 352)
+
+[node name="Human_Player" parent="." instance=ExtResource("1_l46t4")]
+position = Vector2(336, 344)
+
+[node name="Throwable_Object" parent="." instance=ExtResource("3_s4r4u")]
+position = Vector2(280, 344)
+OBJECT = "Trash_Can"

@@ -1,0 +1,72 @@
+[gd_scene load_steps=14 format=3 uid="uid://cu3vgf2y6rk6f"]
+
+[ext_resource type="Shader" path="res://Resources/Wobble.gdshader" id="1_hkpdo"]
+[ext_resource type="Texture2D" uid="uid://1541ba4i00jp" path="res://Assets/CoMiGoFantasyIcons/Modified/Gas.png" id="1_hsjqr"]
+[ext_resource type="Script" path="res://Scenes/Other/Particles/change_particle.gd" id="2_2836x"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rtyuc"]
+frequency = 0.0311
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fbawx"]
+noise = SubResource("FastNoiseLite_rtyuc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qrwuc"]
+shader = ExtResource("1_hkpdo")
+shader_parameter/strength = 0.01
+shader_parameter/speed = 3.0
+shader_parameter/frames = 10
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/flowMap = SubResource("NoiseTexture2D_fbawx")
+
+[sub_resource type="Curve" id="Curve_vinol"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.26, 1), 0.0, 0.0, 0, 0, Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_h8yai"]
+curve = SubResource("Curve_vinol")
+
+[sub_resource type="Curve" id="Curve_neddh"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 75.1649), 0.0, 0.0, 0, 0, Vector2(1, -130.549), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qd0r1"]
+curve = SubResource("Curve_neddh")
+
+[sub_resource type="Curve" id="Curve_118fg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_6cc3s"]
+curve = SubResource("Curve_118fg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6ty05"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+angle_min = 1.07288e-05
+angle_max = 5.00001
+angle_curve = SubResource("CurveTexture_qd0r1")
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_6cc3s")
+alpha_curve = SubResource("CurveTexture_h8yai")
+
+[node name="ChangeParticle" type="GPUParticles2D"]
+material = SubResource("ShaderMaterial_qrwuc")
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_6ty05")
+texture = ExtResource("1_hsjqr")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+draw_order = 0
+script = ExtResource("2_2836x")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
