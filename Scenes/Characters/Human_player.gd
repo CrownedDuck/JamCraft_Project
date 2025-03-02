@@ -14,7 +14,7 @@ const CHANGE_PARTICLE = preload("res://Scenes/Other/Particles/change_particle.ts
 
 var coyote_time_activated:bool = false
 
-var can_move = true
+@export var can_move = true
 
 const jump_height:float = -330.0
 const wall_ride: float = -110

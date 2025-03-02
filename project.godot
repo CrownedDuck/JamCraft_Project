@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalVariables="*res://Resources/Global_Variables.gd"
+GlobalSignals="*res://Resources/Global_Signals.gd"
 
 [display]
 
@@ -26,6 +27,10 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 INTERACTABLE="Can be interacted with"
+
+[gui]
+
+theme/custom_font="res://Assets/friendlyscribbles/friendlyscribbles.ttf"
 
 [input]
 
