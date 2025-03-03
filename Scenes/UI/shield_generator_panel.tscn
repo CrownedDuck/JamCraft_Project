@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bn8vr57qtrfoa"]
+[gd_scene load_steps=32 format=4 uid="uid://bn8vr57qtrfoa"]
 
 [ext_resource type="Texture2D" uid="uid://iqxfnk0vxhar" path="res://Assets/SpaceShooterAssetPack/Mod/Status_lines.png" id="1_fidem"]
 [ext_resource type="Script" path="res://Scripts/shield_generator_panel.gd" id="1_l5d7w"]
@@ -212,11 +212,111 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Minigames:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -49)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../MinigameStart_Particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../MinigameStart_Particles:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 48)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../MinigameStart_Particles2:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_af8o7"]
+resource_name = "Start_Minigame"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Minigames:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -48), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MinigameStart_Particles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../MinigameStart_Particles:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(64, 0), Vector2(64, 48)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../MinigameStart_Particles2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kcqij"]
 _data = {
 "Focus": SubResource("Animation_povnw"),
-"RESET": SubResource("Animation_4fxuj")
+"RESET": SubResource("Animation_4fxuj"),
+"Start_Minigame": SubResource("Animation_af8o7")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r7f4a"]
@@ -272,6 +372,43 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="Curve" id="Curve_10qax"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 1.86877, 1.86877, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kas0w"]
+curve = SubResource("Curve_10qax")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r0nk1"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(45, 1, 1)
+direction = Vector3(3, 0, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, -3, 0)
+radial_accel_min = 20.0
+radial_accel_max = 20.0
+scale_max = 3.0
+color = Color(0.568973, 0.568973, 0.568973, 1)
+alpha_curve = SubResource("CurveTexture_kas0w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_txwoe"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(45, 1, 1)
+direction = Vector3(0, -10, 0)
+spread = 90.0
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 60, 0)
+radial_accel_min = 5.0
+radial_accel_max = 5.0
+scale_max = 3.0
+color = Color(0.703807, 0.703808, 0.703808, 1)
+alpha_curve = SubResource("CurveTexture_kas0w")
+
 [node name="Shield_Generator_Panel" type="CenterContainer"]
 custom_minimum_size = Vector2(96, 48)
 offset_left = -48.0
@@ -317,6 +454,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_qwmqf")
@@ -359,25 +500,48 @@ speed_scale = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_kcqij")
 }
+autoplay = "RESET"
 
-[node name="Minigame" type="Control" parent="Bg"]
+[node name="Minigames" type="Control" parent="Bg"]
+anchors_preset = 0
+offset_top = -48.0
+offset_right = 96.0
+
+[node name="Frame" type="TileMapLayer" parent="Bg/Minigames"]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAMAAHAAAAEAAAAAAAIAAAAAAAIAAAAAAAMAABABAAAAAAAAAAIAAFABAAEAAAABAAMAAAABAAIAAAAAAAIAAFACAAAAAAAAAAIAAFACAAEAAAABAAIAAAACAAIAAAAAAAIAAFADAAAAAAAAAAIAAFADAAEAAAABAAIAAAADAAIAAAAAAAIAAFAEAAAAAAAAAAIAAFAEAAEAAAABAAMAABAEAAIAAAAAAAIAAFAFAAAAAAAAAAMAACAFAAEAAAAAAAIAAAAFAAIAAAAAAAMAAAA=")
+tile_set = SubResource("TileSet_kcoi6")
+
+[node name="Minigame1" type="Control" parent="Bg/Minigames" groups=["minigame"]]
+visible = false
 anchors_preset = 0
 offset_right = 96.0
 offset_bottom = 48.0
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Bg/Minigame"]
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAMAAHAAAAEAAAAAAAIAAAAAAAIAAAAAAAMAABABAAAAAAAAAAIAAFABAAEAAAABAAMAAAABAAIAAAAAAAIAAFACAAAAAAAAAAIAAFACAAEAAAABAAIAAAACAAIAAAAAAAIAAFADAAAAAAAAAAIAAFADAAEAAAABAAIAAAADAAIAAAAAAAIAAFAEAAAAAAAAAAIAAFAEAAEAAAABAAMAABAEAAIAAAAAAAIAAFAFAAAAAAAAAAMAACAFAAEAAAAAAAIAAAAFAAIAAAAAAAMAAAA=")
-tile_set = SubResource("TileSet_kcoi6")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bg/Minigame"]
-position = Vector2(26, 24)
+[node name="Person" type="AnimatedSprite2D" parent="Bg/Minigames/Minigame1"]
+position = Vector2(49, 24)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ntcl0")
 animation = &"Engineer"
 autoplay = "Engineer"
-frame_progress = 0.63549
+frame_progress = 0.859289
+
+[node name="MinigameStart_Particles" type="GPUParticles2D" parent="."]
+position = Vector2(64, 48)
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_r0nk1")
+
+[node name="MinigameStart_Particles2" type="GPUParticles2D" parent="."]
+position = Vector2(64, 48)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_txwoe")
+one_shot = true
+explosiveness = 1.0
 
 [connection signal="mouse_entered" from="Bg/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Bg/Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Bg/Button" to="." method="_on_button_pressed"]
 [connection signal="animation_finished" from="Bg/Status_player" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="Bg/Status_player" to="." method="_on_animation_player_animation_started"]
+[connection signal="animation_finished" from="Bg/Button_Reaction" to="." method="_on_button_reaction_animation_finished"]

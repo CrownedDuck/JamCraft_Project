@@ -7,7 +7,9 @@ extends CenterContainer
 @onready var state = $Bg/State
 @onready var button = $Bg/Button
 
-var Loops = 0
+@onready var minigames = $Bg/Minigames
+
+var Minigame_Started:bool = false
 
 
 func change_displayed_anim():
@@ -55,10 +57,33 @@ func _on_animation_player_animation_finished(anim_name):
 
 
 func _on_button_mouse_entered():
-	button.text = "Repair"
-	button_reaction.play("Focus")
+	if !Minigame_Started:
+		button.text = "Repair"
+		button_reaction.play("Focus")
 
 
 func _on_button_mouse_exited():
-	button.text = ""
-	button_reaction.play_backwards("Focus")
+	if !Minigame_Started:
+		button.text = ""
+		button_reaction.play_backwards("Focus")
+
+
+func _on_button_pressed():
+	if !Minigame_Started:
+		Minigame_Started = true
+		button_reaction.play_backwards("Focus")
+		button_reaction.play("Start_Minigame")
+
+
+func _on_button_reaction_animation_finished(anim_name):
+	if anim_name == "Start_Minigame":
+		var mini = minigames.get_children()
+		mini.shuffle()
+		for i in mini:
+			if i.is_in_group("minigame"):
+				i.show()
+				MINIGAME_ONE()
+				break
+
+func MINIGAME_ONE():
+	DialogueManager.show_dialogue_balloon(load("res://Resources/Dialogues/Shield_Gen_Interactions.dialogue"),"MiniGame1")
