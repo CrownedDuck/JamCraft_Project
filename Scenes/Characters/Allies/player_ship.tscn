@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://uw0rhwd81438"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Allies/player_ship.gd" id="1_0fptv"]
+[ext_resource type="Texture2D" uid="uid://cgmcfa0fksv1d" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_Ships.png" id="1_u3vf4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a5r1i"]
+radius = 6.08276
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8014y"]
+atlas = ExtResource("1_u3vf4")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1eo4"]
+atlas = ExtResource("1_u3vf4")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhhnk"]
+atlas = ExtResource("1_u3vf4")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lqi43"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8014y")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1eo4")
+}],
+"loop": true,
+"name": &"Middle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhhnk")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}]
+
+[node name="Player_Ship" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_0fptv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a5r1i")
+
+[node name="Anims" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lqi43")
+animation = &"Middle"
