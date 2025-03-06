@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkv31gwfhtjbi"]
+
+[ext_resource type="Script" path="res://Scenes/Props/Particles/impact_particle.gd" id="1_d0csi"]
+
+[sub_resource type="Curve" id="Curve_77xam"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_jllkn"]
+curve = SubResource("Curve_77xam")
+
+[sub_resource type="Gradient" id="Gradient_32udi"]
+colors = PackedColorArray(0.695762, 0.459444, 0.165035, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_job7f"]
+gradient = SubResource("Gradient_32udi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u6w85"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+color = Color(0.898396, 0.694519, 0.460333, 1)
+color_ramp = SubResource("GradientTexture1D_job7f")
+alpha_curve = SubResource("CurveTexture_jllkn")
+
+[node name="impact_particle" type="GPUParticles2D"]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_u6w85")
+one_shot = true
+explosiveness = 0.6
+script = ExtResource("1_d0csi")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

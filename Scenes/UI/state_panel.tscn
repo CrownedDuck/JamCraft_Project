@@ -1,31 +1,31 @@
-[gd_scene load_steps=32 format=4 uid="uid://bn8vr57qtrfoa"]
+[gd_scene load_steps=28 format=4 uid="uid://bn8vr57qtrfoa"]
 
-[ext_resource type="Texture2D" uid="uid://iqxfnk0vxhar" path="res://Assets/SpaceShooterAssetPack/Mod/Status_lines.png" id="1_fidem"]
-[ext_resource type="Script" path="res://Scripts/shield_generator_panel.gd" id="1_l5d7w"]
-[ext_resource type="Texture2D" uid="uid://bnpr0sdc88wx5" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_IU.png" id="1_qwmqf"]
-[ext_resource type="Texture2D" uid="uid://y16ocvqvpysk" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_Characters.png" id="4_coa0l"]
+[ext_resource type="Script" path="res://Scripts/state_panel.gd" id="1_0qvwv"]
+[ext_resource type="Texture2D" uid="uid://iqxfnk0vxhar" path="res://Assets/SpaceShooterAssetPack/Mod/Status_lines.png" id="2_5xkww"]
+[ext_resource type="Texture2D" uid="uid://bnpr0sdc88wx5" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_IU.png" id="3_av3yd"]
+[ext_resource type="AudioStream" uid="uid://by547uhvlp22q" path="res://Assets/Sounds/Repair_Sound_test.mp3" id="4_msnnj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2sloo"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ak085"]
-atlas = ExtResource("1_fidem")
+atlas = ExtResource("2_5xkww")
 region = Rect2(64, 48, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gpvet"]
-atlas = ExtResource("1_fidem")
+atlas = ExtResource("2_5xkww")
 region = Rect2(0, 48, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o43pi"]
-atlas = ExtResource("1_fidem")
+atlas = ExtResource("2_5xkww")
 region = Rect2(0, 96, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3801s"]
-atlas = ExtResource("1_fidem")
+atlas = ExtResource("2_5xkww")
 region = Rect2(64, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_am1s6"]
-atlas = ExtResource("1_fidem")
+atlas = ExtResource("2_5xkww")
 region = Rect2(0, 0, 64, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hrqpj"]
@@ -70,8 +70,6 @@ animations = [{
 "name": &"Normal",
 "speed": 5.0
 }]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1cbsq"]
 
 [sub_resource type="Animation" id="Animation_hkoww"]
 resource_name = "Loop"
@@ -156,6 +154,108 @@ tracks/2/keys = {
 _data = {
 "Loop": SubResource("Animation_hkoww"),
 "RESET": SubResource("Animation_gl85n")
+}
+
+[sub_resource type="Animation" id="Animation_lo6bp"]
+resource_name = "Block_View"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Minigames:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -48), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MinigameStart_Particles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../MinigameStart_Particles:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(64, 0), Vector2(64, 48)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../MinigameStart_Particles2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_2qj2u"]
+resource_name = "End_Minigame"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Minigames:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MinigameStart_Particles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../MinigameStart_Particles:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(64, 48), Vector2(64, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../MinigameStart_Particles2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.433333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
 }
 
 [sub_resource type="Animation" id="Animation_povnw"]
@@ -260,6 +360,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Minigames:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_af8o7"]
 resource_name = "Start_Minigame"
@@ -314,13 +438,15 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kcqij"]
 _data = {
+"Block_View": SubResource("Animation_lo6bp"),
+"End_Minigame": SubResource("Animation_2qj2u"),
 "Focus": SubResource("Animation_povnw"),
 "RESET": SubResource("Animation_4fxuj"),
 "Start_Minigame": SubResource("Animation_af8o7")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r7f4a"]
-texture = ExtResource("1_qwmqf")
+texture = ExtResource("3_av3yd")
 0:2/0 = 0
 0:3/0 = 0
 1:2/0 = 0
@@ -329,48 +455,7 @@ texture = ExtResource("1_qwmqf")
 [sub_resource type="TileSet" id="TileSet_kcoi6"]
 sources/0 = SubResource("TileSetAtlasSource_r7f4a")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qaf86"]
-atlas = ExtResource("4_coa0l")
-region = Rect2(1, 64, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pdsf8"]
-atlas = ExtResource("4_coa0l")
-region = Rect2(9, 64, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2jp3g"]
-atlas = ExtResource("4_coa0l")
-region = Rect2(17, 64, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dd01b"]
-atlas = ExtResource("4_coa0l")
-region = Rect2(25, 64, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_636ne"]
-atlas = ExtResource("4_coa0l")
-region = Rect2(33, 64, 8, 8)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ntcl0"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qaf86")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pdsf8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2jp3g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dd01b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_636ne")
-}],
-"loop": true,
-"name": &"Engineer",
-"speed": 6.0
-}]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1cbsq"]
 
 [sub_resource type="Curve" id="Curve_10qax"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 1.86877, 1.86877, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -409,19 +494,23 @@ scale_max = 3.0
 color = Color(0.703807, 0.703808, 0.703808, 1)
 alpha_curve = SubResource("CurveTexture_kas0w")
 
-[node name="Shield_Generator_Panel" type="CenterContainer"]
+[node name="State_Panel" type="Control"]
 custom_minimum_size = Vector2(96, 48)
+layout_mode = 3
+anchors_preset = 0
 offset_left = -48.0
 offset_top = -24.0
 offset_right = 48.0
 offset_bottom = 24.0
 size_flags_horizontal = 3
-script = ExtResource("1_l5d7w")
+script = ExtResource("1_0qvwv")
 
 [node name="Bg" type="Panel" parent="."]
 clip_contents = true
 custom_minimum_size = Vector2(96, 48)
 layout_mode = 2
+offset_right = 96.0
+offset_bottom = 48.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_2sloo")
 
 [node name="Coords" type="Control" parent="Bg"]
@@ -441,26 +530,14 @@ scale = Vector2(1.469, 0.792)
 sprite_frames = SubResource("SpriteFrames_hrqpj")
 animation = &"Normal"
 
-[node name="Button" type="Button" parent="Bg"]
-layout_mode = 0
-offset_right = 96.0
-offset_bottom = 48.0
-theme_override_font_sizes/font_size = 8
-theme_override_styles/focus = SubResource("StyleBoxEmpty_1cbsq")
-flat = true
-
 [node name="NinePatchRect" type="NinePatchRect" parent="Bg"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = -1.0
-offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_qwmqf")
+texture = ExtResource("3_av3yd")
 region_rect = Rect2(0, 16, 16, 16)
 patch_margin_left = 1
 patch_margin_top = 1
@@ -474,7 +551,7 @@ offset_top = 4.0
 offset_right = 99.0
 offset_bottom = 20.0
 scale = Vector2(0.5, 0.5)
-text = "Shield"
+text = "STATE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -494,7 +571,6 @@ libraries = {
 "": SubResource("AnimationLibrary_iqbtt")
 }
 autoplay = "Loop"
-speed_scale = 0.5
 
 [node name="Button_Reaction" type="AnimationPlayer" parent="Bg"]
 libraries = {
@@ -504,26 +580,27 @@ autoplay = "RESET"
 
 [node name="Minigames" type="Control" parent="Bg"]
 anchors_preset = 0
-offset_top = -48.0
+offset_top = -49.0
 offset_right = 96.0
+offset_bottom = -1.0
 
-[node name="Frame" type="TileMapLayer" parent="Bg/Minigames"]
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAMAAHAAAAEAAAAAAAIAAAAAAAIAAAAAAAMAABABAAAAAAAAAAIAAFABAAEAAAABAAMAAAABAAIAAAAAAAIAAFACAAAAAAAAAAIAAFACAAEAAAABAAIAAAACAAIAAAAAAAIAAFADAAAAAAAAAAIAAFADAAEAAAABAAIAAAADAAIAAAAAAAIAAFAEAAAAAAAAAAIAAFAEAAEAAAABAAMAABAEAAIAAAAAAAIAAFAFAAAAAAAAAAMAACAFAAEAAAAAAAIAAAAFAAIAAAAAAAMAAAA=")
-tile_set = SubResource("TileSet_kcoi6")
-
-[node name="Minigame1" type="Control" parent="Bg/Minigames" groups=["minigame"]]
-visible = false
-anchors_preset = 0
+[node name="Indicator" type="ColorRect" parent="Bg/Minigames"]
+layout_mode = 0
 offset_right = 96.0
 offset_bottom = 48.0
+color = Color(0.345098, 0.345098, 0.345098, 1)
 
-[node name="Person" type="AnimatedSprite2D" parent="Bg/Minigames/Minigame1"]
-position = Vector2(49, 24)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_ntcl0")
-animation = &"Engineer"
-autoplay = "Engineer"
-frame_progress = 0.859289
+[node name="Frame" type="TileMapLayer" parent="Bg/Minigames"]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAMAAHAAAAIAAAAAAAMAABABAAAAAAAAAAIAAFABAAIAAAAAAAIAAFACAAAAAAAAAAIAAFACAAIAAAAAAAIAAFADAAAAAAAAAAIAAFADAAIAAAAAAAIAAFAEAAAAAAAAAAIAAFAEAAIAAAAAAAIAAFAFAAAAAAAAAAMAACAFAAEAAAAAAAIAAAAFAAIAAAAAAAMAAAAAAAEAAAAAAAIAAAA=")
+tile_set = SubResource("TileSet_kcoi6")
+
+[node name="Button" type="Button" parent="Bg"]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1cbsq")
+flat = true
 
 [node name="MinigameStart_Particles" type="GPUParticles2D" parent="."]
 position = Vector2(64, 48)
@@ -539,9 +616,26 @@ process_material = SubResource("ParticleProcessMaterial_txwoe")
 one_shot = true
 explosiveness = 1.0
 
+[node name="Timers" type="Node" parent="."]
+
+[node name="RandomAwaitTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="CanFixTimer" type="Timer" parent="Timers"]
+wait_time = 0.8
+one_shot = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="RepairReadySound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_msnnj")
+volume_db = -10.0
+pitch_scale = 0.6
+
+[connection signal="animation_finished" from="Bg/Status_player" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="Bg/Button_Reaction" to="." method="_on_button_reaction_animation_finished"]
 [connection signal="mouse_entered" from="Bg/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Bg/Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="Bg/Button" to="." method="_on_button_pressed"]
-[connection signal="animation_finished" from="Bg/Status_player" to="." method="_on_animation_player_animation_finished"]
-[connection signal="animation_started" from="Bg/Status_player" to="." method="_on_animation_player_animation_started"]
-[connection signal="animation_finished" from="Bg/Button_Reaction" to="." method="_on_button_reaction_animation_finished"]
+[connection signal="timeout" from="Timers/RandomAwaitTimer" to="." method="_on_random_await_timer_timeout"]
+[connection signal="timeout" from="Timers/CanFixTimer" to="." method="_on_can_fix_timer_timeout"]

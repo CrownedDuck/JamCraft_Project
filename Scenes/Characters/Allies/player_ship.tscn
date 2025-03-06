@@ -1,33 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://uw0rhwd81438"]
+[gd_scene load_steps=12 format=3 uid="uid://uw0rhwd81438"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Allies/player_ship.gd" id="1_0fptv"]
 [ext_resource type="Texture2D" uid="uid://cgmcfa0fksv1d" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_Ships.png" id="1_u3vf4"]
+[ext_resource type="AudioStream" uid="uid://hdagfm8d3equ" path="res://Assets/Sounds/Impact_Sound_test.mp3" id="3_nv50j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a5r1i"]
 radius = 6.08276
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8014y"]
-atlas = ExtResource("1_u3vf4")
-region = Rect2(0, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1eo4"]
 atlas = ExtResource("1_u3vf4")
 region = Rect2(8, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lhhnk"]
-atlas = ExtResource("1_u3vf4")
-region = Rect2(16, 0, 8, 8)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_lqi43"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8014y")
-}],
-"loop": true,
-"name": &"Left",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i1eo4")
@@ -35,23 +20,68 @@ animations = [{
 "loop": true,
 "name": &"Middle",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lhhnk")
-}],
-"loop": true,
-"name": &"Right",
-"speed": 5.0
 }]
 
-[node name="Player_Ship" type="CharacterBody2D"]
+[sub_resource type="Curve" id="Curve_5f40h"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_jllkn"]
+curve = SubResource("Curve_5f40h")
+
+[sub_resource type="Gradient" id="Gradient_u1qe6"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_78s1v"]
+gradient = SubResource("Gradient_u1qe6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x6mc8"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_78s1v")
+alpha_curve = SubResource("CurveTexture_jllkn")
+
+[node name="Player_Ship" type="CharacterBody2D" groups=["ENTITY"]]
 collision_layer = 2
 script = ExtResource("1_0fptv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_a5r1i")
 
-[node name="Anims" type="AnimatedSprite2D" parent="."]
+[node name="AnimationsRoot" type="Node2D" parent="."]
+
+[node name="Anims" type="AnimatedSprite2D" parent="AnimationsRoot"]
+rotation = 1.57079
 sprite_frames = SubResource("SpriteFrames_lqi43")
 animation = &"Middle"
+
+[node name="Projectile_Spawn" type="Marker2D" parent="."]
+position = Vector2(8, 0)
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="ImpactSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("3_nv50j")
+max_polyphony = 5
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="Smoke" type="GPUParticles2D" parent="Particles"]
+position = Vector2(5, 0)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_x6mc8")
+lifetime = 3.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+local_coords = true

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4menwy2xt6go"]
+[gd_scene load_steps=4 format=3 uid="uid://d4menwy2xt6go"]
 
-[ext_resource type="PackedScene" uid="uid://bn8vr57qtrfoa" path="res://Scenes/UI/shield_generator_panel.tscn" id="1_7gx6o"]
+[ext_resource type="PackedScene" uid="uid://bn8vr57qtrfoa" path="res://Scenes/UI/state_panel.tscn" id="1_7gx6o"]
+[ext_resource type="PackedScene" uid="uid://q1fvoc6ggi5l" path="res://Scenes/UI/cooldown_indicator.tscn" id="2_04l4k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjfnr"]
 bg_color = Color(0, 0, 0, 1)
@@ -12,12 +13,12 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="Panels"]
 layout_mode = 0
-offset_top = -16.0
 offset_right = 128.0
 offset_bottom = 376.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bjfnr")
@@ -25,16 +26,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bjfnr")
 [node name="Panel2" type="Panel" parent="Panels"]
 layout_mode = 0
 offset_left = 512.0
-offset_top = -16.0
 offset_right = 640.0
 offset_bottom = 376.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bjfnr")
 
 [node name="Title" type="Label" parent="Panels"]
 layout_mode = 2
-offset_left = 1.0
 offset_top = 8.0
-offset_right = 129.0
+offset_right = 128.0
 offset_bottom = 15.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
@@ -45,9 +44,9 @@ horizontal_alignment = 1
 
 [node name="Title2" type="Label" parent="Panels"]
 layout_mode = 2
-offset_left = 520.0
+offset_left = 512.0
 offset_top = 8.0
-offset_right = 632.0
+offset_right = 640.0
 offset_bottom = 15.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
@@ -61,22 +60,59 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -23.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MaintananceButtons" type="VBoxContainer" parent="Root"]
 layout_mode = 0
-offset_top = 24.0
-offset_right = 128.0
-offset_bottom = 360.0
-theme_override_constants/separation = 10
+offset_left = -24.0
+offset_top = 8.0
+offset_right = 104.0
+offset_bottom = 296.0
+theme_override_constants/separation = 29
 
-[node name="Shield_Generator_Panel" parent="Root/MaintananceButtons" instance=ExtResource("1_7gx6o")]
+[node name="Shield" type="CenterContainer" parent="Root/MaintananceButtons"]
 layout_mode = 2
+
+[node name="State_Panel" parent="Root/MaintananceButtons/Shield" instance=ExtResource("1_7gx6o")]
+layout_mode = 2
+
+[node name="Engine" type="CenterContainer" parent="Root/MaintananceButtons"]
+layout_mode = 2
+
+[node name="State_Panel2" parent="Root/MaintananceButtons/Engine" instance=ExtResource("1_7gx6o")]
+layout_mode = 2
+STATE_CHECKED = "Engine_State"
+BUTTON_NAME = "ENGINE"
+
+[node name="Oxygen" type="CenterContainer" parent="Root/MaintananceButtons"]
+layout_mode = 2
+
+[node name="State_Panel2" parent="Root/MaintananceButtons/Oxygen" instance=ExtResource("1_7gx6o")]
+layout_mode = 2
+STATE_CHECKED = "Oxygen_State"
+BUTTON_NAME = "Oxygen"
+
+[node name="Weapons" type="CenterContainer" parent="Root/MaintananceButtons"]
+layout_mode = 2
+
+[node name="State_Panel2" parent="Root/MaintananceButtons/Weapons" instance=ExtResource("1_7gx6o")]
+layout_mode = 2
+STATE_CHECKED = "Weapons_State"
+BUTTON_NAME = "Weapons"
 
 [node name="StatusButtons" type="VBoxContainer" parent="Root"]
 layout_mode = 0
-offset_left = 512.0
-offset_top = 32.0
-offset_right = 640.0
-offset_bottom = 368.0
+offset_left = 504.0
+offset_top = 8.0
+offset_right = 600.0
+offset_bottom = 296.0
+alignment = 1
+
+[node name="CooldownINDICATOR" parent="Root/StatusButtons" instance=ExtResource("2_04l4k")]
+layout_mode = 2
+size_flags_vertical = 4

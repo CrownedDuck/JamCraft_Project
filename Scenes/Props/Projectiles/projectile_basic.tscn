@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://mke2myep83fs"]
+
+[ext_resource type="Script" path="res://Scenes/Props/Projectiles/projectile_basic.gd" id="1_x76h8"]
+[ext_resource type="Texture2D" uid="uid://c2etsgr83mutc" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_Projectiles.png" id="2_tctvw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gywgq"]
+radius = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bih60"]
+atlas = ExtResource("2_tctvw")
+region = Rect2(16, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roe7v"]
+atlas = ExtResource("2_tctvw")
+region = Rect2(32, 32, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omn7l"]
+atlas = ExtResource("2_tctvw")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6uu7f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bih60")
+}],
+"loop": true,
+"name": &"Fast",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roe7v")
+}],
+"loop": true,
+"name": &"Normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omn7l")
+}],
+"loop": true,
+"name": &"Slow",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p108w"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3o2f3"]
+radius = 4.0
+
+[node name="Projectile_Basic" type="CharacterBody2D" groups=["PROJECTILE"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_x76h8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gywgq")
+
+[node name="Anims" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6uu7f")
+animation = &"Fast"
+
+[node name="HIT_SCANNER" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 7
+
+[node name="Small_Collision" type="CollisionShape2D" parent="HIT_SCANNER"]
+shape = SubResource("CircleShape2D_p108w")
+
+[node name="Big_Collision" type="CollisionShape2D" parent="HIT_SCANNER"]
+shape = SubResource("CircleShape2D_3o2f3")
+disabled = true
+
+[connection signal="body_entered" from="HIT_SCANNER" to="." method="_on_hit_scanner_body_entered"]

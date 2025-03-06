@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://db3eypk05dfby"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_2ufo1"]
+[ext_resource type="Texture2D" uid="uid://cgmcfa0fksv1d" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_Ships.png" id="2_o17qr"]
+[ext_resource type="AudioStream" uid="uid://hdagfm8d3equ" path="res://Assets/Sounds/Impact_Sound_test.mp3" id="3_ga113"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4odb0"]
+atlas = ExtResource("2_o17qr")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0wt3l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4odb0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Dummy" type="CharacterBody2D" groups=["ENTITY"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_2ufo1")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-3, 2, -3, 1, -3, -2, 0, -2, 3, -2, 3, 1, 3, 2)
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="ImpactSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("3_ga113")
+max_polyphony = 5
+
+[node name="Anims" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0wt3l")

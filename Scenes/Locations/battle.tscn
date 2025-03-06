@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://j66jiylppu2k"]
+[gd_scene load_steps=10 format=3 uid="uid://j66jiylppu2k"]
 
 [ext_resource type="Script" path="res://Scripts/battle.gd" id="1_8n0q6"]
 [ext_resource type="Shader" path="res://Scenes/Locations/space.gdshader" id="1_i6ql8"]
 [ext_resource type="PackedScene" uid="uid://uw0rhwd81438" path="res://Scenes/Characters/Allies/player_ship.tscn" id="1_ssxms"]
 [ext_resource type="PackedScene" uid="uid://d4menwy2xt6go" path="res://Scenes/UI/ui.tscn" id="2_x0sfa"]
+[ext_resource type="Script" path="res://Scenes/Locations/camera_2d.gd" id="3_mphig"]
+[ext_resource type="PackedScene" uid="uid://db3eypk05dfby" path="res://Scenes/Characters/Enemies/dummy.tscn" id="5_5jlsc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ko6a"]
 shader = ExtResource("1_i6ql8")
@@ -40,7 +42,8 @@ color = Color(0.0475577, 0.0475576, 0.0475576, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(320, 198)
-zoom = Vector2(4, 4)
+zoom = Vector2(4.5, 4.5)
+script = ExtResource("3_mphig")
 
 [node name="Borders" type="Node2D" parent="."]
 
@@ -76,5 +79,10 @@ shape = SubResource("RectangleShape2D_mat8w")
 
 [node name="Player_Ship" parent="." instance=ExtResource("1_ssxms")]
 position = Vector2(320, 225)
+
+[node name="Projectile_Container" type="Node2D" parent="."]
+
+[node name="Dummy" parent="." instance=ExtResource("5_5jlsc")]
+position = Vector2(321, 172)
 
 [node name="UI" parent="." instance=ExtResource("2_x0sfa")]
