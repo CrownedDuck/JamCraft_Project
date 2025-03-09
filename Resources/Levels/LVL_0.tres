@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="Level" load_steps=3 format=3 uid="uid://d4ms4nnd8jesm"]
+[gd_resource type="Resource" script_class="Level" load_steps=4 format=3 uid="uid://d4ms4nnd8jesm"]
 
 [ext_resource type="PackedScene" uid="uid://db3eypk05dfby" path="res://Scenes/Characters/Enemies/dummy.tscn" id="1_235ut"]
+[ext_resource type="Resource" uid="uid://bsgah1kj3icpb" path="res://Resources/Dialogues/LVL_0.dialogue" id="1_qfaaq"]
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="2_lla1x"]
 
 [resource]
 script = ExtResource("2_lla1x")
-Name = "Lvl 1"
-Enemies = {
-0: [ExtResource("1_235ut"), "TOP"]
-}
+Name = "Safe Zone"
+Enemies = [ExtResource("1_235ut")]
 Field_Effect = "NONE"
+Enemy_Spawn_Dif = 1
+Dialogue_Played_at_Start = ExtResource("1_qfaaq")

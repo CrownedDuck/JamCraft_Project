@@ -5,8 +5,7 @@
 
 [resource]
 script = ExtResource("2_i3cyx")
-Name = "Level 1: Open space"
-Enemies = {
-0: [ExtResource("1_peo48"), "TOP"]
-}
+Name = "Open Space"
+Enemies = [ExtResource("1_peo48")]
 Field_Effect = "NONE"
+Enemy_Spawn_Dif = 0

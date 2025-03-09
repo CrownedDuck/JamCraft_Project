@@ -80,13 +80,13 @@ shape = SubResource("RectangleShape2D_mat8w")
 
 [node name="Enemy_Spawns" type="Node2D" parent="."]
 
-[node name="TOP" type="Marker2D" parent="Enemy_Spawns"]
+[node name="S1" type="Marker2D" parent="Enemy_Spawns"]
 position = Vector2(320, 133)
 
-[node name="LEFT" type="Marker2D" parent="Enemy_Spawns"]
+[node name="S2" type="Marker2D" parent="Enemy_Spawns"]
 position = Vector2(246, 201)
 
-[node name="RIGHT" type="Marker2D" parent="Enemy_Spawns"]
+[node name="S3" type="Marker2D" parent="Enemy_Spawns"]
 position = Vector2(396, 201)
 
 [node name="CENTER_TARGET" type="Marker2D" parent="Enemy_Spawns"]
@@ -95,7 +95,8 @@ position = Vector2(320, 198)
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Player_Ship" parent="." instance=ExtResource("1_ssxms")]
-position = Vector2(320, 225)
+position = Vector2(320, 198)
+rotation = -1.57079
 
 [node name="UI" parent="." instance=ExtResource("2_x0sfa")]
 

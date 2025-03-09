@@ -1,0 +1,7 @@
+~ start
+Manager: Alpha, Alpha, do you copy?
+Alpha(You): Yes sir, awaiting orders at the Base.
+Manager: Good, there is a mission for you.
+do CONTINUE.emit()
+Manager: First, shoot the dummy that arrived at the base. It 
+=> END

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://uw0rhwd81438"]
+[gd_scene load_steps=17 format=3 uid="uid://uw0rhwd81438"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Allies/player_ship.gd" id="1_0fptv"]
 [ext_resource type="Texture2D" uid="uid://cgmcfa0fksv1d" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_Ships.png" id="1_u3vf4"]
@@ -85,9 +85,6 @@ gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_78s1v")
 alpha_curve = SubResource("CurveTexture_jllkn")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uww6"]
-size = Vector2(1.5, 20)
-
 [node name="Player_Ship" type="CharacterBody2D" groups=["ENTITY"]]
 collision_layer = 2
 collision_mask = 3
@@ -121,7 +118,7 @@ max_polyphony = 5
 wait_time = 0.25
 one_shot = true
 
-[node name="Shield_Energy_manage" type="Timer" parent="Timers"]
+[node name="Shield_Energy_Deplete" type="Timer" parent="Timers"]
 wait_time = 0.1
 
 [node name="Particles" type="Node2D" parent="."]
@@ -147,9 +144,9 @@ position = Vector2(6, 0)
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Markers/Shield"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Markers/Shield"]
 position = Vector2(0.75, 0)
-shape = SubResource("RectangleShape2D_2uww6")
+polygon = PackedVector2Array(-0.75, -8, 3.25, -6, 5.25, -3, 5.25, 3, 3.25, 6, -0.75, 8, 1.25, 3, 1.25, -3)
 disabled = true
 
-[connection signal="timeout" from="Timers/Shield_Energy_manage" to="." method="_on_shield_energy_recharge_timeout"]
+[connection signal="timeout" from="Timers/Shield_Energy_Deplete" to="." method="_on_shield_energy_deplete_timeout"]

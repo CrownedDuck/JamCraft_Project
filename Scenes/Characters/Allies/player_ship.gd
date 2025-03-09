@@ -12,9 +12,9 @@ var SHIELD_ENERGY:int = 100
 @onready var particles = $Particles
 @onready var smoke = $Particles/Smoke
 @onready var shoot_cooldown = $Timers/Shoot_Cooldown
-@onready var shield_energy_manage = $Timers/Shield_Energy_manage
-
+@onready var shield_energy_deplete = $Timers/Shield_Energy_Deplete
 @onready var shield = $Markers/Shield
+@onready var shield_anim = $AnimationsRoot/Shield
 
 var shield_depletion = false
 
@@ -29,7 +29,6 @@ func _ready():
 	GV.Player = self
 
 func _physics_process(delta):
-	print(SHIELD_ENERGY)
 	if can_move:
 		look_at(get_global_mouse_position())
 		vel.x =  Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -40,18 +39,25 @@ func _physics_process(delta):
 	velocity.y = lerp(velocity.y,vel.y*Spd,ACCEL*delta)
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("skill_shield"):
-		shield_energy_manage.start()
-	
 	
 	
 
 func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_mask == MOUSE_BUTTON_RIGHT and event.is_pressed():
-			if shoot_cooldown.time_left == 0:
-				shoot_cooldown.start()
-				shoot(1)
+	if can_move:
+		if event is InputEventMouseButton:
+			if event.button_mask == MOUSE_BUTTON_RIGHT and event.is_pressed():
+				if shoot_cooldown.time_left == 0:
+					shoot_cooldown.start()
+					shoot(1)
+		if Input.is_action_just_pressed("skill_shield"):
+			if shield_energy_deplete.time_left == 0:
+				shield_energy_deplete.start()
+				shield.get_node("CollisionShape2D").set_deferred("disabled",false)
+				shield_anim.play("OpenShield")
+			else:
+				shield_energy_deplete.stop()
+				shield.get_node("CollisionShape2D").set_deferred("disabled",true)
+				shield_anim.play_backwards("OpenShield")
 
 func damage(amount):
 	for i in GV.States:
@@ -70,9 +76,13 @@ func shoot(type):
 		e.dir = rotation + PI/2
 		e.creator = self
 
+#Add the shield managing system
 
-func _on_shield_energy_recharge_timeout():
-	if SHIELD_ENERGY < 100:
-		SHIELD_ENERGY += 1
+
+func _on_shield_energy_deplete_timeout():
+	if SHIELD_ENERGY > 0:
+		SHIELD_ENERGY -= 1
 	else:
-		shield_energy_manage.stop()
+		shield_energy_deplete.stop()
+		shield_anim.play_backwards("OpenShield")
+		shield.get_node("CollisionShape2D").set_deferred("disabled",true)
