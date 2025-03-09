@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://clxyjld011ai6"
+path="res://.godot/imported/LVL_2.dialogue-9f7699a697e1bc1507e80308c189df27.tres"
+
+[deps]
+
+source_file="res://Resources/Dialogues/LVL_2.dialogue"
+dest_files=["res://.godot/imported/LVL_2.dialogue-9f7699a697e1bc1507e80308c189df27.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://be0ltwm50a0vd"]
+
+[ext_resource type="Script" path="res://Scripts/meteorite.gd" id="1_neppk"]
+[ext_resource type="Texture2D" uid="uid://wco2hbx5rrga" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_Miscellaneous.png" id="2_qrfl1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6pmj3"]
+radius = 7.07107
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t15hh"]
+atlas = ExtResource("2_qrfl1")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vlukn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t15hh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Meteorite" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+mass = 10.0
+script = ExtResource("1_neppk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6pmj3")
+
+[node name="Anims" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vlukn")

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Level" load_steps=3 format=3 uid="uid://b8f5wrod0ut8j"]
+[gd_resource type="Resource" script_class="Level" load_steps=4 format=3 uid="uid://b8f5wrod0ut8j"]
 
+[ext_resource type="Resource" uid="uid://cuqdp7skn60nw" path="res://Resources/Dialogues/LVL_1.dialogue" id="1_0qqeg"]
 [ext_resource type="PackedScene" uid="uid://bkum6ytoklcwy" path="res://Scenes/Characters/Enemies/Fighter.tscn" id="1_peo48"]
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="2_i3cyx"]
 
@@ -9,3 +10,4 @@ Name = "Open Space"
 Enemies = [ExtResource("1_peo48")]
 Field_Effect = "NONE"
 Enemy_Spawn_Dif = 0
+Dialogue_Played_at_Start = ExtResource("1_0qqeg")

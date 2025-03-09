@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Level" load_steps=3 format=3 uid="uid://cishwq5qi7g51"]
+
+[ext_resource type="Resource" uid="uid://d4jypltgjbg72" path="res://Resources/Dialogues/END.dialogue" id="1_5lq75"]
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="2_efjqv"]
+
+[resource]
+script = ExtResource("2_efjqv")
+Name = "End"
+Enemies = []
+Field_Effect = "NONE"
+Enemy_Spawn_Dif = 0
+Dialogue_Played_at_Start = ExtResource("1_5lq75")

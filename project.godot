@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GV="*res://Scripts/Global_Var.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GS="*res://Scripts/GlobalSignal.gd"
+MM="*res://Scenes/UI/music_manager.tscn"
 
 [dialogue_manager]
 
@@ -51,6 +52,7 @@ folder_colors={
 
 PROJECTILE=""
 ENTITY=""
+ABSORB=""
 
 [gui]
 
@@ -90,13 +92,17 @@ skill_shield={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Resources/Dialogues/LVL_0.dialogue", "res://Resources/Dialogues/LVL_1.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Resources/Dialogues/LVL_0.dialogue", "res://Resources/Dialogues/LVL_1.dialogue", "res://Resources/Dialogues/LVL_2.dialogue", "res://Resources/Dialogues/LVL_3.dialogue", "res://Resources/Dialogues/PlayAgain.dialogue", "res://Resources/Dialogues/LVL_4.dialogue", "res://Resources/Dialogues/LVL_5.dialogue", "res://Resources/Dialogues/LVL_6.dialogue", "res://Resources/Dialogues/END.dialogue")
 
 [layer_names]
 
 2d_physics/layer_1="Border"
 2d_physics/layer_2="Entities"
 2d_physics/layer_3="Projectiles"
+
+[physics]
+
+2d/default_gravity=0.0
 
 [rendering]
 

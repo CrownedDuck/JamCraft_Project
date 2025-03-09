@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Level" load_steps=4 format=3 uid="uid://xii7aiqckwpr"]
+
+[ext_resource type="Resource" uid="uid://d4jypltgjbg72" path="res://Resources/Dialogues/END.dialogue" id="1_r8wvi"]
+[ext_resource type="PackedScene" uid="uid://db3eypk05dfby" path="res://Scenes/Characters/Enemies/dummy.tscn" id="2_386dd"]
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="3_ba1ko"]
+
+[resource]
+script = ExtResource("3_ba1ko")
+Name = "End"
+Enemies = [ExtResource("2_386dd")]
+Field_Effect = "NONE"
+Enemy_Spawn_Dif = 0
+Dialogue_Played_at_Start = ExtResource("1_r8wvi")

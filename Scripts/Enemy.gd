@@ -28,3 +28,6 @@ func shake(amount):
 	anims.offset.x = 0
 	anims.offset.y = 0
 	return true
+
+func look_away(target_pos):
+	rotate(get_angle_to(target_pos) + PI);

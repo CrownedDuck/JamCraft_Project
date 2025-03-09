@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Level" load_steps=4 format=3 uid="uid://dujpnrqqt7n2w"]
+
+[ext_resource type="Resource" uid="uid://8nl163ls6nea" path="res://Resources/Dialogues/LVL_6.dialogue" id="1_ai705"]
+[ext_resource type="PackedScene" uid="uid://b3qbfooyl3hei" path="res://Scenes/Characters/Enemies/Lantern.tscn" id="2_tlsuh"]
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="4_p4fol"]
+
+[resource]
+script = ExtResource("4_p4fol")
+Name = "Pirate Territory"
+Enemies = [ExtResource("2_tlsuh"), ExtResource("2_tlsuh")]
+Field_Effect = "METEORITES"
+Enemy_Spawn_Dif = 10
+Dialogue_Played_at_Start = ExtResource("1_ai705")

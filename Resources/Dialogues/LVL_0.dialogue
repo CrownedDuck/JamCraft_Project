@@ -2,6 +2,33 @@
 Manager: Alpha, Alpha, do you copy?
 Alpha(You): Yes sir, awaiting orders at the Base.
 Manager: Good, there is a mission for you.
-do CONTINUE.emit()
-Manager: First, shoot the dummy that arrived at the base. It 
+Manager: But first, lets warm up a little bit.
+do GS.ENABLE_UI.emit()
+- Sir, there is no need for that(SKIP)
+	=> Skip
+- Okay, I am ready.
+	=> tutorial
+
 => END
+
+
+~ tutorial
+Manager: Well, Hmmm where do I start?
+Manager: Ah yes! Use your WASD keys on the control panel to move your Spaceship.
+Manager: Also, your ship has a primitive blaster installed. Use RIGHT CLICK to shoot it.
+Manager: Press E to deploy a shield in front of you that absorbs projectiles in return for energy.
+Manager: Though when you use it you cant shoot the raygun, and also, your energy is limited.
+Manager: Finally, at the left side of your screen there is a maintanance panel,
+Manager: when your ship receives damage click on the button which you want to repair and await for a sound signal.
+Manager: CLICK the button or press SPACE to repair it. If you dont do it in time your spacecraft will receive damage.
+Manager: If two or more systems reach 0, your spacecraft will be destroyed.
+Manager: Okay, that's it. When you get used to your new spacecraft destroy the dummy in return for some energy.
+do CONTINUE.emit()
+=> END!
+
+
+~ Skip
+Manager: Hmm? In that case let us proceed.
+Manager: Destroy the dummy when you are ready.
+do CONTINUE.emit()
+=> END!

@@ -31,6 +31,7 @@ func dead():
 	boom.global_position = global_position
 	boom.z_index = z_index + 1
 	await shake(20)
+	GV.Player.restore_energy()
 	queue_free()
 
 

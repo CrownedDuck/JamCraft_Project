@@ -1,0 +1,21 @@
+[gd_resource type="AnimatedTexture" load_steps=6 format=3 uid="uid://bnt5ethtdvam5"]
+
+[ext_resource type="Texture2D" uid="uid://dootahcg0u00b" path="res://Assets/SpaceShooterAssetPack/Mod/Alpha(You)/You1.png" id="1_1ey72"]
+[ext_resource type="Texture2D" uid="uid://bbiarksdolc3w" path="res://Assets/SpaceShooterAssetPack/Mod/Alpha(You)/You2.png" id="2_f4cam"]
+[ext_resource type="Texture2D" uid="uid://b5b441h1lgrxh" path="res://Assets/SpaceShooterAssetPack/Mod/Alpha(You)/You3.png" id="3_r4130"]
+[ext_resource type="Texture2D" uid="uid://dqdp7u4u8e16t" path="res://Assets/SpaceShooterAssetPack/Mod/Alpha(You)/You4.png" id="4_0py4n"]
+[ext_resource type="Texture2D" uid="uid://box0hn3koe44m" path="res://Assets/SpaceShooterAssetPack/Mod/Alpha(You)/You5.png" id="5_mwk27"]
+
+[resource]
+frames = 5
+speed_scale = 0.6
+frame_0/texture = ExtResource("1_1ey72")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("2_f4cam")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("3_r4130")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("4_0py4n")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("5_mwk27")
+frame_4/duration = 0.1

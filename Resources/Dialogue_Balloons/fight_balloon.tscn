@@ -1,44 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://bf7cjhiwp3m1u"]
+[gd_scene load_steps=14 format=3 uid="uid://bf7cjhiwp3m1u"]
 
 [ext_resource type="Script" path="res://Resources/Dialogue_Balloons/balloon.gd" id="1_61hqc"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_m8kdp"]
+[ext_resource type="Texture2D" uid="uid://c67prfprs5s4u" path="res://Resources/character_icons/Manager.tres" id="2_uh0q1"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_g3yqp"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.329412, 0.329412, 0.329412, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wqa0y"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri4m3"]
-bg_color = Color(0.121569, 0.121569, 0.121569, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v5tlg"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0njw"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.6, 0.6, 0.6, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v8avq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ssrk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4lsx"]
 bg_color = Color(0, 0, 0, 1)
@@ -46,10 +19,10 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="Theme" id="Theme_qq3yp"]
 default_font_size = 20
 Button/font_sizes/font_size = 10
-Button/styles/disabled = SubResource("StyleBoxFlat_spyqn")
-Button/styles/focus = SubResource("StyleBoxFlat_ri4m3")
-Button/styles/hover = SubResource("StyleBoxFlat_e0njw")
-Button/styles/normal = SubResource("StyleBoxFlat_e0njw")
+Button/styles/disabled = SubResource("StyleBoxEmpty_wqa0y")
+Button/styles/focus = SubResource("StyleBoxEmpty_v5tlg")
+Button/styles/hover = SubResource("StyleBoxEmpty_v8avq")
+Button/styles/normal = SubResource("StyleBoxEmpty_5ssrk")
 MarginContainer/constants/margin_bottom = 15
 MarginContainer/constants/margin_left = 30
 MarginContainer/constants/margin_right = 30
@@ -173,14 +146,31 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -4.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/Panel/Dialogue"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Balloon/Panel/Dialogue"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="Balloon/Panel/Dialogue/HBoxContainer"]
+layout_mode = 2
+
+[node name="CharacterIcon" type="TextureRect" parent="Balloon/Panel/Dialogue/HBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_uh0q1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/Panel/Dialogue/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/Panel/Dialogue/VBoxContainer"]
+[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/Panel/Dialogue/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
@@ -191,7 +181,7 @@ text = "Character"
 fit_content = true
 scroll_active = false
 
-[node name="DialogueLabel" parent="Balloon/Panel/Dialogue/VBoxContainer" instance=ExtResource("2_m8kdp")]
+[node name="DialogueLabel" parent="Balloon/Panel/Dialogue/HBoxContainer/VBoxContainer" instance=ExtResource("2_m8kdp")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -212,11 +202,12 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -128.0
-offset_top = -176.0
+offset_top = -223.0
 offset_right = 128.0
 offset_bottom = -116.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/margin_bottom = -1
 
 [node name="ResponsesMenu" type="VBoxContainer" parent="Balloon/Responses" node_paths=PackedStringArray("response_template")]
 unique_name_in_owner = true
@@ -231,6 +222,11 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Response example"
 
+[node name="ResponseExample2" type="Button" parent="Balloon/Responses/ResponsesMenu"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Response example"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_faf4u")
@@ -238,4 +234,5 @@ libraries = {
 autoplay = "START"
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
+[connection signal="spoke" from="Balloon/Panel/Dialogue/HBoxContainer/VBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_spoke"]
 [connection signal="response_selected" from="Balloon/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]

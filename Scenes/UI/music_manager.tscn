@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl5p3pxr8cuba"]
+
+[ext_resource type="Script" path="res://Scenes/UI/music_manager.gd" id="1_hbd0u"]
+[ext_resource type="AudioStream" uid="uid://c7c86im1py0a4" path="res://Assets/Sounds/expb#6.mp3" id="1_kbyry"]
+[ext_resource type="AudioStream" uid="uid://cmic5lvy4dqu5" path="res://Assets/Sounds/third boss track.mp3" id="2_v16g1"]
+[ext_resource type="AudioStream" uid="uid://b47u8j1voabwo" path="res://Assets/Sounds/hiphop.mp3" id="4_bhhjj"]
+
+[node name="Music_Manager" type="Node"]
+script = ExtResource("1_hbd0u")
+
+[node name="Start" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_kbyry")
+volume_db = -45.0
+
+[node name="Fight1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_v16g1")
+volume_db = -45.0
+
+[node name="Fight2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bhhjj")
+volume_db = -45.0

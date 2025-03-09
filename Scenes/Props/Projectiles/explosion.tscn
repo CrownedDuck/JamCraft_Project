@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://7e80ysadmwb1"]
+[gd_scene load_steps=14 format=3 uid="uid://7e80ysadmwb1"]
 
 [ext_resource type="Script" path="res://Scripts/explosion.gd" id="1_7084q"]
+[ext_resource type="AudioStream" uid="uid://cp8weabx8s143" path="res://Assets/Sounds/war explosion if you need it.wav.mp3" id="2_mf4s7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s4ejn"]
 radius = 16.0
@@ -36,7 +37,8 @@ initial_velocity_max = 2.0
 gravity = Vector3(0, 0, 0)
 radial_accel_min = 25.35
 radial_accel_max = 28.17
-scale_max = 1.5
+scale_min = 2.0
+scale_max = 2.0
 scale_curve = SubResource("CurveTexture_i5dve")
 color = Color(0.898396, 0.694519, 0.460333, 1)
 color_ramp = SubResource("GradientTexture1D_job7f")
@@ -112,7 +114,7 @@ shape = SubResource("CircleShape2D_s4ejn")
 
 [node name="ExplosionParticles" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 100
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_k7ahy")
 lifetime = 1.25
 one_shot = true
@@ -125,5 +127,12 @@ libraries = {
 }
 autoplay = "Explode"
 
+[node name="Boom" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_mf4s7")
+volume_db = 10.0
+pitch_scale = 0.92
+autoplay = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="Boom" to="." method="_on_boom_finished"]

@@ -1,0 +1,6 @@
+~ start
+Computer: Entering a field of asteroids in 10 seconds.
+Computer: 1 Destroyer detected.. Recalculating...
+Computer: 2 Destroyers detected. 1 incoming in 10 seconds.
+do CONTINUE.emit()
+=> END!

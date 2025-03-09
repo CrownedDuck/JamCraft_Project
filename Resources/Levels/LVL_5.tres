@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Level" load_steps=5 format=3 uid="uid://ba5r2yki8qxom"]
+
+[ext_resource type="Resource" uid="uid://dkajb3vew6jtj" path="res://Resources/Dialogues/LVL_5.dialogue" id="1_7xred"]
+[ext_resource type="PackedScene" uid="uid://b3qbfooyl3hei" path="res://Scenes/Characters/Enemies/Lantern.tscn" id="2_aqs6b"]
+[ext_resource type="PackedScene" uid="uid://bkum6ytoklcwy" path="res://Scenes/Characters/Enemies/Fighter.tscn" id="2_t7wwj"]
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="3_v4x7e"]
+
+[resource]
+script = ExtResource("3_v4x7e")
+Name = "Pirate Territory"
+Enemies = [ExtResource("2_aqs6b"), ExtResource("2_t7wwj"), ExtResource("2_t7wwj")]
+Field_Effect = "NONE"
+Enemy_Spawn_Dif = 4
+Dialogue_Played_at_Start = ExtResource("1_7xred")

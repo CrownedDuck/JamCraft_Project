@@ -8,12 +8,14 @@ var States = {
 	'Weapons_State':100
 	}
 
-var OVERHEAT_AMOUNT:int = 0
-var OVERHEATED:bool = false
-
 var Player
 
+var FightScene:Node2D
+
+var Deaths = 0
+
 var Projectile_Container:Node2D
+var Objects_Container:Node2D
 var MAP_CENTER:Vector2
 var LEVEL_NUMBER:int = 0
 #Level [number]:([Name],[Enemies])

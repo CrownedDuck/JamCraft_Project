@@ -14,5 +14,5 @@ func _ready():
 func _process(delta):
 	if VARIANT == "BLASTER":
 		progress_bar.value = MAX_VALUE - GV.Player.shoot_cooldown.time_left
-	elif VARIANT == "SHIELD":
+	elif VARIANT == "ENERGY":
 		progress_bar.value = GV.Player.SHIELD_ENERGY

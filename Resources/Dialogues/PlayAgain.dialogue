@@ -1,0 +1,34 @@
+~ start
+Manager: Alpha, It seems that you are in trouble...
+Manager: I can teleport your pod back to the base, or we can send a replacement right at your position.
+=> Selection
+
+
+~ Selection
+Manager: What do you choose?
+- RESTART LEVEL
+	=> REPLACE
+- RESTART GAME
+	=> WARNING
+
+
+~ BACK
+Alpha(You): Teleport me back, I will try again later.
+Manager: Very well.
+Computer: Initiating teleportation protocol
+do _restart_game()
+=> END
+
+~ REPLACE
+Alpha(You): Sent replacement, I can do this.
+Manager: Very well.
+Computer: Initiating emergency transportation protocol
+do _restart_level()
+=> END
+
+~ WARNING
+Manager: Are you sure? You will lose your progress, you understand it right?
+- Yes Bring me back
+	=> BACK
+- Back
+	=> Selection

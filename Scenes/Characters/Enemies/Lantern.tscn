@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3qbfooyl3hei"]
+
+[ext_resource type="Script" path="res://Scripts/lantern.gd" id="1_yygat"]
+[ext_resource type="AudioStream" uid="uid://hdagfm8d3equ" path="res://Assets/Sounds/Impact_Sound_test.mp3" id="2_t4awx"]
+[ext_resource type="Texture2D" uid="uid://cgmcfa0fksv1d" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_Ships.png" id="3_xftlt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1rnv"]
+atlas = ExtResource("3_xftlt")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uva2v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1rnv")
+}],
+"loop": true,
+"name": &"Lantern",
+"speed": 5.0
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cahtu"]
+particle_flag_disable_z = true
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+radial_accel_min = -20.0
+radial_accel_max = -20.0
+color = Color(0.635294, 1, 0.952941, 1)
+
+[node name="Lantern" type="CharacterBody2D" groups=["ENTITY"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_yygat")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, -8, 8, -8, 7, -1, 7, 1, 8, 8, -7, 8, -8, 4, -8, -4)
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="RandomMovement" type="Timer" parent="Timers"]
+autostart = true
+
+[node name="ChargeLaser" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Laser_Restart" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Stun" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="StopTimer" type="Timer" parent="Timers"]
+wait_time = 1.5
+one_shot = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="ImpactSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("2_t4awx")
+max_polyphony = 5
+
+[node name="AnimationsRoot" type="Node2D" parent="."]
+
+[node name="Anims" type="AnimatedSprite2D" parent="AnimationsRoot"]
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_uva2v")
+animation = &"Lantern"
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="Projectile_Spawn" type="Marker2D" parent="Markers"]
+position = Vector2(8, 0)
+
+[node name="LaserChargePart" type="GPUParticles2D" parent="Markers/Projectile_Spawn"]
+position = Vector2(-2, 0)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_cahtu")
+
+[node name="LaserContainer" type="Node2D" parent="Markers"]
+position = Vector2(9, 0)
+
+[node name="VISIBLE_NOTIFY" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="timeout" from="Timers/RandomMovement" to="." method="_on_random_movement_timeout"]
+[connection signal="timeout" from="Timers/ChargeLaser" to="." method="_on_laser_charge_timeout"]
+[connection signal="timeout" from="Timers/Laser_Restart" to="." method="_on_laser_restart_timeout"]
+[connection signal="timeout" from="Timers/Stun" to="." method="_on_stun_timeout"]
+[connection signal="timeout" from="Timers/StopTimer" to="." method="_on_stop_timer_timeout"]
+[connection signal="screen_exited" from="VISIBLE_NOTIFY" to="." method="_on_visible_notify_screen_exited"]

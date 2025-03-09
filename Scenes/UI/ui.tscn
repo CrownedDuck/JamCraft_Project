@@ -1,11 +1,262 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4menwy2xt6go"]
+[gd_scene load_steps=10 format=3 uid="uid://d4menwy2xt6go"]
 
-[ext_resource type="Script" path="res://Scenes/UI/ui.gd" id="1_3vxwv"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_3vxwv"]
 [ext_resource type="PackedScene" uid="uid://bn8vr57qtrfoa" path="res://Scenes/UI/state_panel.tscn" id="1_7gx6o"]
 [ext_resource type="PackedScene" uid="uid://b8kiasjeaelod" path="res://Scenes/UI/progress_bar.tscn" id="2_wt3md"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjfnr"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_d8ein"]
+resource_name = "Disable"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panels/Title:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panels/Level:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panels/Title2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panels/STATE:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c1y1c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panels/Title:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panels/Level:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panels/Title2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panels/STATE:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Panels/Game Credits1:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(256, -32)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Panels/Game Credits1:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_45bwf"]
+resource_name = "Start"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panels/Title:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panels/Level:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panels/Title2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panels/Game Credits1:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ydn3m"]
+resource_name = "Show_Title"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panels/Game Credits1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(240, -32), Vector2(240, 88)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panels/Game Credits1:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.56667, 3.53333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i7o70"]
+_data = {
+"Disable": SubResource("Animation_d8ein"),
+"RESET": SubResource("Animation_c1y1c"),
+"Show_Title": SubResource("Animation_ydn3m"),
+"Start": SubResource("Animation_45bwf")
+}
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_3vxwv")
@@ -33,6 +284,7 @@ offset_bottom = 376.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bjfnr")
 
 [node name="Title" type="Label" parent="Panels"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 offset_top = 8.0
 offset_right = 128.0
@@ -45,6 +297,7 @@ text = "Maintenance"
 horizontal_alignment = 1
 
 [node name="Level" type="Label" parent="Panels"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 offset_left = 136.0
 offset_top = 8.0
@@ -54,10 +307,11 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 7
-text = "Level 1: OPEN SPACE"
+text = "Safe zone"
 horizontal_alignment = 1
 
 [node name="Title2" type="Label" parent="Panels"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 offset_left = 512.0
 offset_top = 8.0
@@ -70,7 +324,117 @@ theme_override_font_sizes/font_size = 7
 text = "Status"
 horizontal_alignment = 1
 
+[node name="Game Credits1" type="Label" parent="Panels"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_left = 256.0
+offset_top = -32.0
+offset_right = 412.0
+offset_bottom = -19.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 13
+text = "Space in bits"
+horizontal_alignment = 1
+
+[node name="Game Credits2" type="Label" parent="Panels/Game Credits1"]
+layout_mode = 2
+offset_left = -16.0
+offset_top = 22.0
+offset_right = 176.0
+offset_bottom = 29.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 7
+text = "Coding done by crownedduck"
+horizontal_alignment = 1
+
+[node name="Game Credits3" type="Label" parent="Panels/Game Credits1"]
+layout_mode = 2
+offset_left = -16.0
+offset_top = 46.0
+offset_right = 168.0
+offset_bottom = 53.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 7
+text = "Music composed by L3SSEE"
+horizontal_alignment = 1
+
+[node name="Game Credits4" type="Label" parent="Panels/Game Credits1"]
+layout_mode = 2
+offset_left = -16.0
+offset_top = 70.0
+offset_right = 168.0
+offset_bottom = 77.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 7
+text = "Music composed by L3SSEE"
+horizontal_alignment = 1
+
+[node name="Game Credits5" type="Label" parent="Panels/Game Credits1"]
+layout_mode = 2
+offset_left = -16.0
+offset_top = 94.0
+offset_right = 168.0
+offset_bottom = 111.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 7
+text = "Space shooter assets from 
+Gustavo Vituri"
+horizontal_alignment = 1
+
+[node name="Game Credits6" type="Label" parent="Panels/Game Credits1"]
+layout_mode = 2
+offset_left = -16.0
+offset_top = 126.0
+offset_right = 168.0
+offset_bottom = 143.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 7
+text = "4 pixels font from 
+Mounir Tohami"
+horizontal_alignment = 1
+
+[node name="STATE" type="Label" parent="Panels"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_left = 136.0
+offset_top = 160.0
+offset_right = 504.0
+offset_bottom = 199.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 16
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="END" type="Label" parent="Panels"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_left = 136.0
+offset_top = 160.0
+offset_right = 504.0
+offset_bottom = 199.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 16
+text = "Game Over"
+horizontal_alignment = 1
+
 [node name="Root" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,6 +490,7 @@ offset_left = 496.0
 offset_top = 8.0
 offset_right = 608.0
 offset_bottom = 296.0
+theme_override_constants/separation = 30
 alignment = 1
 
 [node name="Blaster_Recharge" parent="Root/StatusButtons" instance=ExtResource("2_wt3md")]
@@ -136,6 +501,12 @@ MAX_VALUE = 0.25
 
 [node name="Shield_Energy" parent="Root/StatusButtons" instance=ExtResource("2_wt3md")]
 layout_mode = 2
-TEXT = "shield"
-VARIANT = "SHIELD"
+TEXT = "Energy"
+VARIANT = "ENERGY"
 MAX_VALUE = 100.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i7o70")
+}
+autoplay = "Show_Title"

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cmic5lvy4dqu5"
+path="res://.godot/imported/third boss track.mp3-8b8be9e4521cb18406d6781d78ccfe2b.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/third boss track.mp3"
+dest_files=["res://.godot/imported/third boss track.mp3-8b8be9e4521cb18406d6781d78ccfe2b.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

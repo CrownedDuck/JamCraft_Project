@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://q0nbcmxqvecs"
+path="res://.godot/imported/PlayAgain.dialogue-ebf53b6f745fe519d67c972308ec8827.tres"
+
+[deps]
+
+source_file="res://Resources/Dialogues/PlayAgain.dialogue"
+dest_files=["res://.godot/imported/PlayAgain.dialogue-ebf53b6f745fe519d67c972308ec8827.tres"]
+
+[params]
+
+defaults=true

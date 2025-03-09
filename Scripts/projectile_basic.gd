@@ -34,3 +34,18 @@ func _on_hit_scanner_body_entered(body):
 		e.look_at(global_position)
 		e.z_index = body.z_index + 1
 		queue_free()
+	elif body.is_in_group("ABSORB"):
+		var e = IMPACT_PARTICLE.instantiate()
+		body.add_child(e)
+		e.global_position = global_position
+		e.look_at(global_position)
+		e.z_index = body.z_index + 1
+		queue_free()
+
+func delete():
+	var e = IMPACT_PARTICLE.instantiate()
+	GV.Projectile_Container.call_deferred("add_child",e)
+	e.global_position = global_position
+	e.look_at(global_position)
+	e.z_index = z_index + 1
+	queue_free()

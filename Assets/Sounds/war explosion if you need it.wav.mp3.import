@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cp8weabx8s143"
+path="res://.godot/imported/war explosion if you need it.wav.mp3-59a578e7184bdf2c8d97fa5a1b2ba655.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/war explosion if you need it.wav.mp3"
+dest_files=["res://.godot/imported/war explosion if you need it.wav.mp3-59a578e7184bdf2c8d97fa5a1b2ba655.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

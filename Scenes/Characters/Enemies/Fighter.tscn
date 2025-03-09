@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkum6ytoklcwy"]
+[gd_scene load_steps=11 format=3 uid="uid://bkum6ytoklcwy"]
 
-[ext_resource type="Script" path="res://Scenes/Characters/Enemies/Fighter.gd" id="1_q74y4"]
+[ext_resource type="Script" path="res://Scripts/Fighter.gd" id="1_q74y4"]
 [ext_resource type="AudioStream" uid="uid://hdagfm8d3equ" path="res://Assets/Sounds/Impact_Sound_test.mp3" id="2_07doi"]
 [ext_resource type="Texture2D" uid="uid://cgmcfa0fksv1d" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_Ships.png" id="3_7xbri"]
+[ext_resource type="AudioStream" uid="uid://cfkshvw6mh5gp" path="res://Assets/Sounds/laser-gun-81720.mp3" id="3_rksuq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4odb0"]
 atlas = ExtResource("3_7xbri")
@@ -86,13 +87,17 @@ wait_time = 0.2
 one_shot = true
 
 [node name="StopTimer" type="Timer" parent="Timers"]
-wait_time = 0.75
 one_shot = true
 
 [node name="Sounds" type="Node" parent="."]
 
 [node name="ImpactSound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("2_07doi")
+max_polyphony = 5
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("3_rksuq")
+volume_db = -10.0
 max_polyphony = 5
 
 [node name="AnimationsRoot" type="Node2D" parent="."]

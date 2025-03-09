@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://iqxfnk0vxhar"
-path="res://.godot/imported/Status_lines.png-ccb8fba7c04cfc7470322e2eb2646f19.ctex"
+uid="uid://bt8q8p54bq5sr"
+path="res://.godot/imported/Computer1.png-e15874634e7096f76395056e7eb74481.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/SpaceShooterAssetPack/Mod/Status_lines.png"
-dest_files=["res://.godot/imported/Status_lines.png-ccb8fba7c04cfc7470322e2eb2646f19.ctex"]
+source_file="res://Assets/SpaceShooterAssetPack/Mod/Computer/Computer1.png"
+dest_files=["res://.godot/imported/Computer1.png-e15874634e7096f76395056e7eb74481.ctex"]
 
 [params]
 

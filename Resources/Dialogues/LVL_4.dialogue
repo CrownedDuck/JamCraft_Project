@@ -1,0 +1,4 @@
+~ start
+Computer: Captain, A large pirate Destroyer detected. Please avoid any direct contact with its destructive laser.
+do CONTINUE.emit()
+=> END!

@@ -1,0 +1,4 @@
+~ start
+Computer: Safe zone detected. Spacecraft restoration is advised.
+do CONTINUE.emit()
+=> END!

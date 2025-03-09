@@ -1,0 +1,5 @@
+~ start
+Computer: Spacecraft identified: Pirate scout frigate, a fast manoeuvrable ship with standart series space blaster.
+Computer: Two scout frigates detected, agile and explosive, procceed with caution.
+do CONTINUE.emit()
+=> END!

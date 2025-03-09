@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://db3eypk05dfby"]
 
-[ext_resource type="Script" path="res://Scenes/Characters/Enemies/Dummy.gd" id="1_rkf54"]
+[ext_resource type="Script" path="res://Scripts/Dummy.gd" id="1_rkf54"]
 [ext_resource type="Texture2D" uid="uid://cgmcfa0fksv1d" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_Ships.png" id="2_o17qr"]
 [ext_resource type="AudioStream" uid="uid://hdagfm8d3equ" path="res://Assets/Sounds/Impact_Sound_test.mp3" id="3_ga113"]
 
@@ -23,6 +23,7 @@ animations = [{
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_rkf54")
+HP = 50
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 rotation = 1.57079

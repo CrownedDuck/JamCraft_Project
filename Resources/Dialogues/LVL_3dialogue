@@ -1,0 +1,4 @@
+~ start
+Computer: Two spacecrafts detected, agile and explosive, procceed with caution.
+do CONTINUE.emit()
+=> END!

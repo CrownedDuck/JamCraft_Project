@@ -1,0 +1,21 @@
+[gd_resource type="AnimatedTexture" load_steps=6 format=3 uid="uid://fmyhfteqa3d0"]
+
+[ext_resource type="Texture2D" uid="uid://b6suedq2s86jb" path="res://Assets/SpaceShooterAssetPack/Mod/Developer/Sprite-0001.png" id="1_2m5fm"]
+[ext_resource type="Texture2D" uid="uid://bpbhcynbmhorg" path="res://Assets/SpaceShooterAssetPack/Mod/Developer/Sprite-0002.png" id="2_ntbia"]
+[ext_resource type="Texture2D" uid="uid://cx17pmms4jyxy" path="res://Assets/SpaceShooterAssetPack/Mod/Developer/Sprite-0003.png" id="3_8yujf"]
+[ext_resource type="Texture2D" uid="uid://dal27esybcwes" path="res://Assets/SpaceShooterAssetPack/Mod/Developer/Sprite-0004.png" id="4_v5lmf"]
+[ext_resource type="Texture2D" uid="uid://xh8cmhtvnob2" path="res://Assets/SpaceShooterAssetPack/Mod/Developer/Sprite-0005.png" id="5_damm3"]
+
+[resource]
+frames = 5
+speed_scale = 0.6
+frame_0/texture = ExtResource("1_2m5fm")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("2_ntbia")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("3_8yujf")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("4_v5lmf")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("5_damm3")
+frame_4/duration = 0.1

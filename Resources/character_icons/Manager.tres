@@ -1,0 +1,21 @@
+[gd_resource type="AnimatedTexture" load_steps=6 format=3 uid="uid://c67prfprs5s4u"]
+
+[ext_resource type="Texture2D" uid="uid://dicfwfdsxkesr" path="res://Assets/SpaceShooterAssetPack/Mod/Manager/Manager1.png" id="1_rexg8"]
+[ext_resource type="Texture2D" uid="uid://cgm1deok8tuhv" path="res://Assets/SpaceShooterAssetPack/Mod/Manager/Manager2.png" id="2_jnf7u"]
+[ext_resource type="Texture2D" uid="uid://cmhceo2yfciiu" path="res://Assets/SpaceShooterAssetPack/Mod/Manager/Manager3.png" id="3_t67sd"]
+[ext_resource type="Texture2D" uid="uid://d1mfwh3rx6ayg" path="res://Assets/SpaceShooterAssetPack/Mod/Manager/Manager4.png" id="4_rikrc"]
+[ext_resource type="Texture2D" uid="uid://bqubfu3mw4j4l" path="res://Assets/SpaceShooterAssetPack/Mod/Manager/Manager5.png" id="5_4l1yy"]
+
+[resource]
+frames = 5
+speed_scale = 0.6
+frame_0/texture = ExtResource("1_rexg8")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("2_jnf7u")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("3_t67sd")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("4_rikrc")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("5_4l1yy")
+frame_4/duration = 0.1

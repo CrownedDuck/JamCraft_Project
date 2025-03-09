@@ -1,0 +1,6 @@
+~ start
+Computer: A small convoy group consisting of 2 frigates and 1 destroyer was detected.
+Manager: They even sent 2 destroyers, huh? They are going all in...
+Manager: Try using his laser to defeat his minions.
+do CONTINUE.emit()
+=> END!

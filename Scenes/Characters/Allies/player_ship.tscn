@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://uw0rhwd81438"]
+[gd_scene load_steps=18 format=3 uid="uid://uw0rhwd81438"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Allies/player_ship.gd" id="1_0fptv"]
 [ext_resource type="Texture2D" uid="uid://cgmcfa0fksv1d" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_Ships.png" id="1_u3vf4"]
 [ext_resource type="AudioStream" uid="uid://hdagfm8d3equ" path="res://Assets/Sounds/Impact_Sound_test.mp3" id="3_nv50j"]
 [ext_resource type="Texture2D" uid="uid://wco2hbx5rrga" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_Miscellaneous.png" id="3_oiyub"]
+[ext_resource type="AudioStream" uid="uid://bwl38gmi0xnrc" path="res://Assets/Sounds/chatter explosion.mp3" id="5_boxwk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1eo4"]
 atlas = ExtResource("1_u3vf4")
@@ -112,6 +113,18 @@ animation = &"OpenShield"
 stream = ExtResource("3_nv50j")
 max_polyphony = 5
 
+[node name="FailedShoot" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("3_nv50j")
+max_polyphony = 5
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("5_boxwk")
+max_polyphony = 5
+
+[node name="Shield" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("5_boxwk")
+max_polyphony = 5
+
 [node name="Timers" type="Node" parent="."]
 
 [node name="Shoot_Cooldown" type="Timer" parent="Timers"]
@@ -139,14 +152,14 @@ local_coords = true
 [node name="Projectile_Spawn" type="Marker2D" parent="Markers"]
 position = Vector2(8, 0)
 
-[node name="Shield" type="StaticBody2D" parent="Markers"]
+[node name="Shield" type="StaticBody2D" parent="Markers" groups=["ABSORB"]]
 position = Vector2(6, 0)
 collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Markers/Shield"]
 position = Vector2(0.75, 0)
-polygon = PackedVector2Array(-0.75, -8, 3.25, -6, 5.25, -3, 5.25, 3, 3.25, 6, -0.75, 8, 1.25, 3, 1.25, -3)
+polygon = PackedVector2Array(-0.75, -8, 5.25, -5, 5.25, 5, -0.75, 8)
 disabled = true
 
 [connection signal="timeout" from="Timers/Shield_Energy_Deplete" to="." method="_on_shield_energy_deplete_timeout"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bwl38gmi0xnrc"
+path="res://.godot/imported/chatter explosion.mp3-b8aeac4355998aedefc2a17858e15112.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/chatter explosion.mp3"
+dest_files=["res://.godot/imported/chatter explosion.mp3-b8aeac4355998aedefc2a17858e15112.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://j66jiylppu2k"]
+[gd_scene load_steps=14 format=3 uid="uid://j66jiylppu2k"]
 
 [ext_resource type="Script" path="res://Scripts/battle.gd" id="1_8n0q6"]
 [ext_resource type="Shader" path="res://Scenes/Locations/space.gdshader" id="1_i6ql8"]
@@ -21,11 +21,71 @@ shader_parameter/base_scroll_speed = 0.05
 shader_parameter/additional_scroll_speed = 0.05
 shader_parameter/Time = null
 
+[sub_resource type="Animation" id="Animation_l268d"]
+resource_name = "Start"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(322, 317), Vector2(322, 198)]
+}
+
+[sub_resource type="Animation" id="Animation_dylii"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(320, 198)]
+}
+
+[sub_resource type="Animation" id="Animation_bnlac"]
+resource_name = "END"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 198), Vector2(320, -64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0x1vk"]
+_data = {
+"END": SubResource("Animation_bnlac"),
+"RESET": SubResource("Animation_dylii"),
+"Start": SubResource("Animation_l268d")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5l7d"]
 size = Vector2(20, 360)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mat8w"]
 size = Vector2(144, 12)
+
+[sub_resource type="Curve2D" id="Curve2D_4i1j2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -56, -5, 0, 0, 0, 0, 56, -5)
+}
+point_count = 2
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_8n0q6")
@@ -33,9 +93,9 @@ script = ExtResource("1_8n0q6")
 [node name="BG" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_0ko6a")
 offset_left = 167.0
-offset_top = 340.0
-offset_right = 467.0
-offset_bottom = 640.0
+offset_top = 378.0
+offset_right = 681.0
+offset_bottom = 678.0
 rotation = -1.5708
 color = Color(0.0475577, 0.0475576, 0.0475576, 1)
 
@@ -43,6 +103,12 @@ color = Color(0.0475577, 0.0475576, 0.0475576, 1)
 position = Vector2(320, 198)
 zoom = Vector2(3.25, 3.25)
 script = ExtResource("3_mphig")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+libraries = {
+"": SubResource("AnimationLibrary_0x1vk")
+}
+autoplay = "Start"
 
 [node name="Borders" type="Node2D" parent="."]
 
@@ -78,16 +144,30 @@ shape = SubResource("RectangleShape2D_mat8w")
 
 [node name="Projectile_Container" type="Node2D" parent="."]
 
+[node name="Space_Objects" type="Node2D" parent="."]
+
+[node name="Teleports" type="Node2D" parent="."]
+
 [node name="Enemy_Spawns" type="Node2D" parent="."]
 
 [node name="S1" type="Marker2D" parent="Enemy_Spawns"]
-position = Vector2(320, 133)
+position = Vector2(320, 120)
 
 [node name="S2" type="Marker2D" parent="Enemy_Spawns"]
-position = Vector2(246, 201)
+position = Vector2(240, 200)
 
 [node name="S3" type="Marker2D" parent="Enemy_Spawns"]
-position = Vector2(396, 201)
+position = Vector2(400, 200)
+
+[node name="Asteroid_Spawn" type="Path2D" parent="Enemy_Spawns"]
+position = Vector2(320, 133)
+curve = SubResource("Curve2D_4i1j2")
+
+[node name="Asteroid_Pos" type="PathFollow2D" parent="Enemy_Spawns/Asteroid_Spawn"]
+position = Vector2(-56, -5)
+rotates = false
+cubic_interp = false
+loop = false
 
 [node name="CENTER_TARGET" type="Marker2D" parent="Enemy_Spawns"]
 position = Vector2(320, 198)
@@ -96,8 +176,12 @@ position = Vector2(320, 198)
 
 [node name="Player_Ship" parent="." instance=ExtResource("1_ssxms")]
 position = Vector2(320, 198)
-rotation = -1.57079
+rotation = -1.5708
 
 [node name="UI" parent="." instance=ExtResource("2_x0sfa")]
 
+[node name="ItemSpawn" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="child_order_changed" from="Enemies" to="." method="_on_enemies_child_order_changed"]
+[connection signal="timeout" from="ItemSpawn" to="." method="_on_item_spawn_timeout"]

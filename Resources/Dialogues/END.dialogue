@@ -1,0 +1,7 @@
+~ start
+Crownedduck: Sorry folks, here the game ends for now.
+Crownedduck: I had somewhere around 4 days to make it due to some work I had.
+Crownedduck: I thank my friend L3SSEE for making the music and everybody else whose works we used in this game.
+Crownedduck: Thank you for playing.
+do GS.END.emit()
+=> END!

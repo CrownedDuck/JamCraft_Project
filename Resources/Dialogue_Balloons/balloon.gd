@@ -45,6 +45,10 @@ var mutation_cooldown: Timer = Timer.new()
 ## The label showing the name of the currently speaking character
 @onready var character_label: RichTextLabel = %CharacterLabel
 
+## Character Icon
+@onready var character_icon = $Balloon/Panel/Dialogue/HBoxContainer/CenterContainer/CharacterIcon
+
+
 ## The label showing the currently spoken dialogue
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 
@@ -96,6 +100,8 @@ func apply_dialogue_line() -> void:
 
 	character_label.visible = not dialogue_line.character.is_empty()
 	character_label.text = tr(dialogue_line.character, "dialogue")
+
+	character_icon.texture = load("res://Resources/character_icons/"+str(dialogue_line.character)+'.tres')
 
 	dialogue_label.hide()
 	dialogue_label.dialogue_line = dialogue_line
@@ -173,3 +179,7 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 
 
 #endregion
+
+
+func _on_dialogue_label_spoke(letter, letter_index, speed):
+	pass # Replace with function body.

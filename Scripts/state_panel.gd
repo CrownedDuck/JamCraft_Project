@@ -9,7 +9,7 @@ extends Control
 
 @onready var name_label = $Bg/Name
 
-@onready var repair_ready_sound = $Sounds/RepairReadySound
+
 @onready var random_await_timer = $Timers/RandomAwaitTimer
 @onready var can_fix_timer = $Timers/CanFixTimer
 @onready var minigame_indicator = $Bg/Minigames/Indicator
@@ -18,6 +18,9 @@ extends Control
 @export var STATE_CHECKED:String = "Shield_Gen_State"
 @export var BUTTON_NAME:String = "SHIELD"
 
+@onready var repair_done_sound = $Sounds/RepairDoneSound
+@onready var repair_failed_sound = $Sounds/RepairFailedSound
+@onready var repair_ready_sound = $Sounds/RepairReadySound
 var Minigame_Started:bool = false
 
 func _process(delta):
@@ -40,6 +43,8 @@ func check_color():
 	elif GV.States[STATE_CHECKED] > 0:
 		progress.modulate = "#e90000"
 	else:
+		hide()
+		button.disabled = true
 		progress.modulate = "#000000"
 
 
@@ -68,6 +73,7 @@ func _on_button_pressed():
 			minigame_indicator.color = "#00aa00"
 			GS.REPAIR_END.emit()
 			GV.States[STATE_CHECKED] = 100
+			repair_done_sound.play()
 
 func _on_button_reaction_animation_finished(anim_name):
 	if anim_name == "Start_Minigame":
@@ -88,6 +94,7 @@ func _on_random_await_timer_timeout():
 func _on_can_fix_timer_timeout():
 	minigame_indicator.color = "#dc0038"
 	print("FAILED FIX")
+	repair_failed_sound.play()
 	shake(25)
 	GV.States[STATE_CHECKED] -= 25
 	if GV.States[STATE_CHECKED] < 0:
