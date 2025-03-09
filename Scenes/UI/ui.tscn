@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4menwy2xt6go"]
+[gd_scene load_steps=5 format=3 uid="uid://d4menwy2xt6go"]
 
+[ext_resource type="Script" path="res://Scenes/UI/ui.gd" id="1_3vxwv"]
 [ext_resource type="PackedScene" uid="uid://bn8vr57qtrfoa" path="res://Scenes/UI/state_panel.tscn" id="1_7gx6o"]
-[ext_resource type="PackedScene" uid="uid://q1fvoc6ggi5l" path="res://Scenes/UI/cooldown_indicator.tscn" id="2_04l4k"]
+[ext_resource type="PackedScene" uid="uid://b8kiasjeaelod" path="res://Scenes/UI/progress_bar.tscn" id="2_wt3md"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjfnr"]
 bg_color = Color(0, 0, 0, 1)
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_3vxwv")
 
 [node name="Panels" type="Control" parent="."]
 layout_mode = 3
@@ -40,6 +42,19 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 7
 text = "Maintenance"
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="Panels"]
+layout_mode = 2
+offset_left = 136.0
+offset_top = 8.0
+offset_right = 504.0
+offset_bottom = 15.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 7
+text = "Level 1: OPEN SPACE"
 horizontal_alignment = 1
 
 [node name="Title2" type="Label" parent="Panels"]
@@ -107,12 +122,20 @@ BUTTON_NAME = "Weapons"
 
 [node name="StatusButtons" type="VBoxContainer" parent="Root"]
 layout_mode = 0
-offset_left = 504.0
+offset_left = 496.0
 offset_top = 8.0
-offset_right = 600.0
+offset_right = 608.0
 offset_bottom = 296.0
 alignment = 1
 
-[node name="CooldownINDICATOR" parent="Root/StatusButtons" instance=ExtResource("2_04l4k")]
+[node name="Blaster_Recharge" parent="Root/StatusButtons" instance=ExtResource("2_wt3md")]
 layout_mode = 2
-size_flags_vertical = 4
+TEXT = "blaster"
+VARIANT = "BLASTER"
+MAX_VALUE = 0.25
+
+[node name="Shield_Energy" parent="Root/StatusButtons" instance=ExtResource("2_wt3md")]
+layout_mode = 2
+TEXT = "shield"
+VARIANT = "SHIELD"
+MAX_VALUE = 100.0

@@ -1,14 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://j66jiylppu2k"]
+[gd_scene load_steps=11 format=3 uid="uid://j66jiylppu2k"]
 
 [ext_resource type="Script" path="res://Scripts/battle.gd" id="1_8n0q6"]
 [ext_resource type="Shader" path="res://Scenes/Locations/space.gdshader" id="1_i6ql8"]
 [ext_resource type="PackedScene" uid="uid://uw0rhwd81438" path="res://Scenes/Characters/Allies/player_ship.tscn" id="1_ssxms"]
 [ext_resource type="PackedScene" uid="uid://d4menwy2xt6go" path="res://Scenes/UI/ui.tscn" id="2_x0sfa"]
 [ext_resource type="Script" path="res://Scenes/Locations/camera_2d.gd" id="3_mphig"]
+[ext_resource type="PackedScene" uid="uid://db3eypk05dfby" path="res://Scenes/Characters/Enemies/dummy.tscn" id="5_5jlsc"]
+[ext_resource type="PackedScene" uid="uid://bkum6ytoklcwy" path="res://Scenes/Characters/Enemies/Fighter.tscn" id="7_5frp8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ko6a"]
 shader = ExtResource("1_i6ql8")
-shader_parameter/dimensions = Vector2(30, 30)
+shader_parameter/dimensions = Vector2(600, 600)
 shader_parameter/small_stars = 50.0
 shader_parameter/small_stars_far_size = 0.1
 shader_parameter/small_stars_near_size = 0.1
@@ -25,29 +27,29 @@ shader_parameter/Time = null
 size = Vector2(20, 360)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mat8w"]
-size = Vector2(144, 12)
+size = Vector2(120, 12)
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_8n0q6")
 
 [node name="BG" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_0ko6a")
-offset_left = 167.0
-offset_top = 340.0
-offset_right = 467.0
-offset_bottom = 640.0
+offset_left = 269.0
+offset_top = 281.0
+offset_right = 437.0
+offset_bottom = 381.0
 rotation = -1.5708
 color = Color(0.0475577, 0.0475576, 0.0475576, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(320, 198)
-zoom = Vector2(3.25, 3.25)
+zoom = Vector2(4.5, 4.5)
 script = ExtResource("3_mphig")
 
 [node name="Borders" type="Node2D" parent="."]
 
 [node name="BorderL" type="StaticBody2D" parent="Borders"]
-position = Vector2(249, 201)
+position = Vector2(264, 200)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderL"]
@@ -55,7 +57,7 @@ position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_t5l7d")
 
 [node name="BorderR" type="StaticBody2D" parent="Borders"]
-position = Vector2(393, 201)
+position = Vector2(376, 200)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderR"]
@@ -63,40 +65,30 @@ position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_t5l7d")
 
 [node name="BorderDOWN" type="StaticBody2D" parent="Borders"]
-position = Vector2(321, 263)
+position = Vector2(320, 250)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderDOWN"]
 shape = SubResource("RectangleShape2D_mat8w")
 
 [node name="BorderUP" type="StaticBody2D" parent="Borders"]
-position = Vector2(320, 133)
+position = Vector2(320, 147)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderUP"]
 shape = SubResource("RectangleShape2D_mat8w")
 
-[node name="Projectile_Container" type="Node2D" parent="."]
-
-[node name="Enemy_Spawns" type="Node2D" parent="."]
-
-[node name="TOP" type="Marker2D" parent="Enemy_Spawns"]
-position = Vector2(320, 133)
-
-[node name="LEFT" type="Marker2D" parent="Enemy_Spawns"]
-position = Vector2(246, 201)
-
-[node name="RIGHT" type="Marker2D" parent="Enemy_Spawns"]
-position = Vector2(396, 201)
-
-[node name="CENTER_TARGET" type="Marker2D" parent="Enemy_Spawns"]
-position = Vector2(320, 198)
-
-[node name="Enemies" type="Node2D" parent="."]
-
 [node name="Player_Ship" parent="." instance=ExtResource("1_ssxms")]
 position = Vector2(320, 225)
 
+[node name="Projectile_Container" type="Node2D" parent="."]
+
+[node name="Dummy" parent="." instance=ExtResource("5_5jlsc")]
+position = Vector2(321, 172)
+
 [node name="UI" parent="." instance=ExtResource("2_x0sfa")]
 
-[connection signal="child_order_changed" from="Enemies" to="." method="_on_enemies_child_order_changed"]
+[node name="Fighter" parent="." instance=ExtResource("7_5frp8")]
+position = Vector2(320, 192)
+HP = 100
+SPEED = 100.0

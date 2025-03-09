@@ -1,20 +1,23 @@
 extends CharacterBody2D
 
-var Spawn_Pos:Vector2
-var Spawn_Rot:float
 var dir:float
 
 var DMG:float = 10
 
-var Type = "Normal"
+var creator:Node2D
+
+var Type = "Energy"
+@onready var anims = $Anims
+@onready var fire_trail = $FireTrail
 
 const IMPACT_PARTICLE = preload("res://Scenes/Props/Particles/impact_particle.tscn")
 
 var Spd = Vector2(0,-100)
 
 func _ready():
-	global_position = Spawn_Pos
-	global_rotation = Spawn_Rot
+	anims.play(Type)
+	fire_trail.play(Type)
+	
 
 func _physics_process(delta):
 	var collision_info = move_and_collide((Spd * delta).rotated(dir))
@@ -29,4 +32,5 @@ func _on_hit_scanner_body_entered(body):
 		body.particles.add_child(e)
 		e.global_position = body.global_position
 		e.look_at(global_position)
-		#queue_free()
+		e.z_index = body.z_index + 1
+		queue_free()

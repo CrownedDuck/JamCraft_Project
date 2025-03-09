@@ -3,19 +3,22 @@ extends CharacterBody2D
 
 @onready var impact_sound = $Sounds/ImpactSound
 @onready var particles = $Particles
-@onready var anims = $Anims
+@onready var anims = $AnimationsRoot/Anims
 
-
+var State = "SPAWN"
 @export var HP:int = 100
+@export var SPEED:float = 20.0
 
-
+signal DAMAGED
+signal DEAD
 
 func damage(amount):
 	HP -= amount
 	impact_sound.play()
 	shake(10)
+	DAMAGED.emit()
 	if HP <= 0:
-		queue_free()
+		DEAD.emit()
 
 func shake(amount):
 	for i in range(amount):
@@ -24,3 +27,4 @@ func shake(amount):
 		await get_tree().create_timer(0.01).timeout
 	anims.offset.x = 0
 	anims.offset.y = 0
+	return true

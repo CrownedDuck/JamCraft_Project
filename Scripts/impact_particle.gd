@@ -5,4 +5,3 @@ func _ready():
 
 func _on_finished():
 	queue_free()
-	print(name + "was freed")

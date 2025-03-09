@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Level" load_steps=3 format=3 uid="uid://b8f5wrod0ut8j"]
+
+[ext_resource type="PackedScene" uid="uid://bkum6ytoklcwy" path="res://Scenes/Characters/Enemies/Fighter.tscn" id="1_peo48"]
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="2_i3cyx"]
+
+[resource]
+script = ExtResource("2_i3cyx")
+Name = "Level 1: Open space"
+Enemies = {
+0: [ExtResource("1_peo48"), "TOP"]
+}
+Field_Effect = "NONE"

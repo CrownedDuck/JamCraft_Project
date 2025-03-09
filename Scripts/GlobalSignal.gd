@@ -5,3 +5,5 @@ signal REPAIR_END
 
 signal SHAKE_CAMERA
 signal OVERHEATED
+
+signal NEXT_LEVEL

@@ -1,160 +1,26 @@
-[gd_scene load_steps=28 format=4 uid="uid://bn8vr57qtrfoa"]
+[gd_scene load_steps=20 format=4 uid="uid://bn8vr57qtrfoa"]
 
 [ext_resource type="Script" path="res://Scripts/state_panel.gd" id="1_0qvwv"]
-[ext_resource type="Texture2D" uid="uid://iqxfnk0vxhar" path="res://Assets/SpaceShooterAssetPack/Mod/Status_lines.png" id="2_5xkww"]
 [ext_resource type="Texture2D" uid="uid://bnpr0sdc88wx5" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_IU.png" id="3_av3yd"]
 [ext_resource type="AudioStream" uid="uid://by547uhvlp22q" path="res://Assets/Sounds/Repair_Sound_test.mp3" id="4_msnnj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2sloo"]
 bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ak085"]
-atlas = ExtResource("2_5xkww")
-region = Rect2(64, 48, 64, 48)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uf2ak"]
+texture = ExtResource("3_av3yd")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+region_rect = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gpvet"]
-atlas = ExtResource("2_5xkww")
-region = Rect2(0, 48, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o43pi"]
-atlas = ExtResource("2_5xkww")
-region = Rect2(0, 96, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3801s"]
-atlas = ExtResource("2_5xkww")
-region = Rect2(64, 0, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_am1s6"]
-atlas = ExtResource("2_5xkww")
-region = Rect2(0, 0, 64, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_hrqpj"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ak085")
-}],
-"loop": true,
-"name": &"Critical",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gpvet")
-}],
-"loop": true,
-"name": &"Damaged",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o43pi")
-}],
-"loop": true,
-"name": &"Destroyed",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3801s")
-}],
-"loop": true,
-"name": &"Medium",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_am1s6")
-}],
-"loop": true,
-"name": &"Normal",
-"speed": 5.0
-}]
-
-[sub_resource type="Animation" id="Animation_hkoww"]
-resource_name = "Loop"
-step = 0.0001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Coords/Anim1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.5001, 0.99),
-"transitions": PackedFloat32Array(1, 262144, 1, 1),
-"update": 0,
-"values": [Vector2(48, 24), Vector2(-46, 24), Vector2(143, 24), Vector2(48, 24)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Coords/Anim2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4978, 0.5231, 0.99, 0.9905, 0.995, 0.999),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(142, 24), Vector2(48, 24), Vector2(48, 24), Vector2(-47, 24), Vector2(-65, 72), Vector2(49, 77), Vector2(144, 72)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Coords/Anim1:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4922, 0.495, 0.5046, 0.5071, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, true, false, false, true, true]
-}
-
-[sub_resource type="Animation" id="Animation_gl85n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Coords/Anim1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(48, 24)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Coords/Anim2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(48, 24)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Coords/Anim1:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_iqbtt"]
-_data = {
-"Loop": SubResource("Animation_hkoww"),
-"RESET": SubResource("Animation_gl85n")
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iksji"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Animation" id="Animation_lo6bp"]
 resource_name = "Block_View"
@@ -192,7 +58,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(64, 0), Vector2(64, 48)]
+"values": [Vector2(48, 0), Vector2(48, 47)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -513,22 +379,19 @@ offset_right = 96.0
 offset_bottom = 48.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_2sloo")
 
-[node name="Coords" type="Control" parent="Bg"]
-anchors_preset = 0
-offset_right = 96.0
-offset_bottom = 48.0
-
-[node name="Anim1" type="AnimatedSprite2D" parent="Bg/Coords"]
-position = Vector2(48, 24)
-scale = Vector2(1.46875, 0.791667)
-sprite_frames = SubResource("SpriteFrames_hrqpj")
-animation = &"Normal"
-
-[node name="Anim2" type="AnimatedSprite2D" parent="Bg/Coords"]
-position = Vector2(48, 24)
-scale = Vector2(1.469, 0.792)
-sprite_frames = SubResource("SpriteFrames_hrqpj")
-animation = &"Normal"
+[node name="Progress" type="ProgressBar" parent="Bg"]
+modulate = Color(0.912219, 0.000463764, 0.000253457, 1)
+custom_minimum_size = Vector2(0, 20)
+offset_left = 81.0
+offset_top = 5.0
+offset_right = 91.0
+offset_bottom = 43.0
+theme_override_styles/background = SubResource("StyleBoxTexture_uf2ak")
+theme_override_styles/fill = SubResource("StyleBoxFlat_iksji")
+step = 1.0
+value = 100.0
+fill_mode = 3
+show_percentage = false
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Bg"]
 layout_mode = 1
@@ -558,19 +421,13 @@ vertical_alignment = 1
 [node name="State" type="Label" parent="Bg"]
 layout_mode = 2
 offset_left = 3.0
-offset_top = 39.0
-offset_right = 15.0
-offset_bottom = 55.0
+offset_top = 37.0
+offset_right = 69.0
+offset_bottom = 53.0
 scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 text = "100%"
 vertical_alignment = 1
-
-[node name="Status_player" type="AnimationPlayer" parent="Bg"]
-libraries = {
-"": SubResource("AnimationLibrary_iqbtt")
-}
-autoplay = "Loop"
 
 [node name="Button_Reaction" type="AnimationPlayer" parent="Bg"]
 libraries = {
@@ -580,9 +437,8 @@ autoplay = "RESET"
 
 [node name="Minigames" type="Control" parent="Bg"]
 anchors_preset = 0
-offset_top = -49.0
+offset_top = -48.0
 offset_right = 96.0
-offset_bottom = -1.0
 
 [node name="Indicator" type="ColorRect" parent="Bg/Minigames"]
 layout_mode = 0
@@ -609,7 +465,7 @@ amount = 100
 process_material = SubResource("ParticleProcessMaterial_r0nk1")
 
 [node name="MinigameStart_Particles2" type="GPUParticles2D" parent="."]
-position = Vector2(64, 48)
+position = Vector2(48, 51)
 emitting = false
 amount = 10
 process_material = SubResource("ParticleProcessMaterial_txwoe")
@@ -632,7 +488,6 @@ stream = ExtResource("4_msnnj")
 volume_db = -10.0
 pitch_scale = 0.6
 
-[connection signal="animation_finished" from="Bg/Status_player" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="Bg/Button_Reaction" to="." method="_on_button_reaction_animation_finished"]
 [connection signal="mouse_entered" from="Bg/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Bg/Button" to="." method="_on_button_mouse_exited"]

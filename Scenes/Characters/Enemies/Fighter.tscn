@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=3 uid="uid://bkum6ytoklcwy"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Enemies/Fighter.gd" id="1_q74y4"]
+[ext_resource type="AudioStream" uid="uid://hdagfm8d3equ" path="res://Assets/Sounds/Impact_Sound_test.mp3" id="2_07doi"]
+[ext_resource type="Texture2D" uid="uid://cgmcfa0fksv1d" path="res://Assets/SpaceShooterAssetPack/SpaceShooterAssets/SpaceShooterAssetPack_Ships.png" id="3_7xbri"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4odb0"]
+atlas = ExtResource("3_7xbri")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65kf5"]
+atlas = ExtResource("3_7xbri")
+region = Rect2(32, 32, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l35vn"]
+atlas = ExtResource("3_7xbri")
+region = Rect2(40, 32, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq8pn"]
+atlas = ExtResource("3_7xbri")
+region = Rect2(8, 24, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0wt3l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4odb0")
+}],
+"loop": true,
+"name": &"dummy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65kf5")
+}],
+"loop": true,
+"name": &"fighter1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l35vn")
+}],
+"loop": true,
+"name": &"fighter2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wq8pn")
+}],
+"loop": true,
+"name": &"fighter3",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ffcux"]
+radius = 15.0333
+
+[node name="Fighter" type="CharacterBody2D" groups=["ENTITY"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_q74y4")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-4, 4, -5, 0, -4, -4, 0, -2, 1, -3, 4, -2, 2, 0, 4, 2, 1, 3, 0, 2)
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="DashStop" type="Timer" parent="Timers"]
+wait_time = 0.3
+one_shot = true
+
+[node name="RandomMovement" type="Timer" parent="Timers"]
+autostart = true
+
+[node name="Shoot" type="Timer" parent="Timers"]
+wait_time = 0.5
+autostart = true
+
+[node name="Stun" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="StopTimer" type="Timer" parent="Timers"]
+wait_time = 0.75
+one_shot = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="ImpactSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("2_07doi")
+max_polyphony = 5
+
+[node name="AnimationsRoot" type="Node2D" parent="."]
+
+[node name="Anims" type="AnimatedSprite2D" parent="AnimationsRoot"]
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_0wt3l")
+animation = &"fighter3"
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="Projectile_Spawn" type="Marker2D" parent="Markers"]
+position = Vector2(6, 0)
+
+[node name="Projectile_Detector" type="Area2D" parent="."]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile_Detector"]
+shape = SubResource("CircleShape2D_ffcux")
+
+[node name="VISIBLE_NOTIFY" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="timeout" from="Timers/DashStop" to="." method="_on_dash_stop_timeout"]
+[connection signal="timeout" from="Timers/RandomMovement" to="." method="_on_random_movement_timeout"]
+[connection signal="timeout" from="Timers/Shoot" to="." method="_on_shoot_timeout"]
+[connection signal="timeout" from="Timers/Stun" to="." method="_on_stun_timeout"]
+[connection signal="timeout" from="Timers/StopTimer" to="." method="_on_stop_timer_timeout"]
+[connection signal="body_entered" from="Projectile_Detector" to="." method="_on_projectile_detector_body_entered"]
+[connection signal="screen_exited" from="VISIBLE_NOTIFY" to="." method="_on_visible_notify_screen_exited"]

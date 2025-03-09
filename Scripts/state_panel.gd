@@ -1,9 +1,6 @@
 extends Control
 
 @onready var button_reaction = $Bg/Button_Reaction
-@onready var animation_player = $Bg/Status_player
-@onready var anim_1 = $Bg/Coords/Anim1
-@onready var anim_2 = $Bg/Coords/Anim2
 @onready var state = $Bg/State
 @onready var button = $Bg/Button
 @onready var minigames = $Bg/Minigames
@@ -16,6 +13,7 @@ extends Control
 @onready var random_await_timer = $Timers/RandomAwaitTimer
 @onready var can_fix_timer = $Timers/CanFixTimer
 @onready var minigame_indicator = $Bg/Minigames/Indicator
+@onready var progress = $Bg/Progress
 
 @export var STATE_CHECKED:String = "Shield_Gen_State"
 @export var BUTTON_NAME:String = "SHIELD"
@@ -24,53 +22,25 @@ var Minigame_Started:bool = false
 
 func _process(delta):
 	state.text = str(GV.States[STATE_CHECKED]) + "%"
+	progress.value = GV.States[STATE_CHECKED]
+	check_color()
 
 func _ready():
 	GS.REPAIR_END.connect(stop)
 	GS.REPAIR_START.connect(block)
 	name_label.text = BUTTON_NAME
-	
-func change_displayed_anim():
-	if GV.States[STATE_CHECKED]>= 85:
-		await animation_player.animation_started
-		anim_2.play("Normal")
-		await anim_1.hidden
-		animation_player.speed_scale = 1
-		anim_1.play("Normal")
-	
-	elif GV.States[STATE_CHECKED] >= 65:
-		await animation_player.animation_started
-		anim_2.play("Medium")
-		await anim_1.hidden
-		animation_player.speed_scale = 0.7
-		anim_1.play("Medium")
-	
-	elif GV.States[STATE_CHECKED] >= 35:
-		await animation_player.animation_started
-		anim_2.play("Damaged")
-		await anim_1.hidden
-		animation_player.speed_scale = 0.4
-		anim_1.play("Damaged")
-	
+
+func check_color():
+	if GV.States[STATE_CHECKED] > 80:
+		progress.modulate = "#ffffff"
+	elif GV.States[STATE_CHECKED] > 60:
+		progress.modulate = "#ffd96e"
+	elif GV.States[STATE_CHECKED] > 35:
+		progress.modulate = "#eb8a00"
 	elif GV.States[STATE_CHECKED] > 0:
-		await animation_player.animation_started
-		anim_2.play("Critical")
-		await anim_1.hidden
-		animation_player.speed_scale = randf_range(0.3,1)
-		anim_1.play("Critical")
-	
+		progress.modulate = "#e90000"
 	else:
-		await animation_player.animation_started
-		anim_2.play("Destroyed")
-		await anim_1.hidden
-		animation_player.speed_scale = 0.1
-		anim_1.play("Destroyed")
-
-
-
-func _on_animation_player_animation_finished(anim_name):
-	animation_player.play("Loop")
-	change_displayed_anim()
+		progress.modulate = "#000000"
 
 
 func _on_button_mouse_entered():
@@ -97,9 +67,7 @@ func _on_button_pressed():
 		if can_fix_timer.time_left != 0:
 			minigame_indicator.color = "#00aa00"
 			GS.REPAIR_END.emit()
-			GV.States[STATE_CHECKED] += 25
-			if GV.States[STATE_CHECKED] > 100:
-				GV.States[STATE_CHECKED] = 100
+			GV.States[STATE_CHECKED] = 100
 
 func _on_button_reaction_animation_finished(anim_name):
 	if anim_name == "Start_Minigame":

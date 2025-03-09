@@ -1,11 +1,129 @@
-[gd_scene load_steps=2 format=3 uid="uid://7e80ysadmwb1"]
+[gd_scene load_steps=13 format=3 uid="uid://7e80ysadmwb1"]
+
+[ext_resource type="Script" path="res://Scripts/explosion.gd" id="1_7084q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s4ejn"]
-radius = 24.0
+radius = 16.0
+
+[sub_resource type="Curve" id="Curve_77xam"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_jllkn"]
+curve = SubResource("Curve_77xam")
+
+[sub_resource type="Gradient" id="Gradient_32udi"]
+colors = PackedColorArray(0.695762, 0.459444, 0.165035, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_job7f"]
+gradient = SubResource("Gradient_32udi")
+
+[sub_resource type="Curve" id="Curve_of6cb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i5dve"]
+curve = SubResource("Curve_of6cb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k7ahy"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 25.35
+radial_accel_max = 28.17
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_i5dve")
+color = Color(0.898396, 0.694519, 0.460333, 1)
+color_ramp = SubResource("GradientTexture1D_job7f")
+alpha_curve = SubResource("CurveTexture_jllkn")
+
+[sub_resource type="Animation" id="Animation_5ns7p"]
+resource_name = "Explode"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExplosionParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.733333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 13.0]
+}
+
+[sub_resource type="Animation" id="Animation_gowtf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExplosionParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [16.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hvs2i"]
+_data = {
+"Explode": SubResource("Animation_5ns7p"),
+"RESET": SubResource("Animation_gowtf")
+}
 
 [node name="EXPLOSION" type="Area2D"]
+collision_mask = 7
+script = ExtResource("1_7084q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_s4ejn")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="ExplosionParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_k7ahy")
+lifetime = 1.25
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.74
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hvs2i")
+}
+autoplay = "Explode"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
